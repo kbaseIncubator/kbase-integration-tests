@@ -1,0 +1,16 @@
+version: "3.8"
+networks:
+  kbase-dev:
+    name: kbase-dev
+services:
+  tests:
+    image: python-cli:dev
+    networks:
+      - kbase-dev
+    build:
+      context: .
+    volumes:
+      - "${PWD}:/kb/module"
+#    entrypoint: ['pytest' ]
+#    command: [ './tests/' ]
+    entrypoint: ['/bin/bash']
