@@ -66,6 +66,8 @@ or this will run just the feeds plugin tests:
 - `BROWSER` if set will determine the browser to run tests in, `firefox` and `chrome` are available; defaults to `chrome`
 - `TIMEOUT` if set indicates the test timeout in seconds; defaults to `30`.
 
+> NOTE: `KBASE_ENV` is not fully supported yet.
+
 For example, it is common when debugging tests to run non-headless:
 
 ```shell
