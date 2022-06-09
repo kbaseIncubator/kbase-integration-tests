@@ -25,7 +25,9 @@ then
 where:
 
 - `PYTHONPATH` should be set to repo root directory
-- `KBASE_TOKEN` is a KBase Login, Dev, or other auth token
+- `KBASE_TOKEN` is a KBase Login, Dev, or other auth token for the account for which test data has been generated
+
+Note that currently the test data is owned by the user `kbaseuitest` and is not public. This account has not special authorizations, so the token must be a Login token for this account. Please ask the UI team for a token for this account.
 
 This will run the tests against `https://ci.kbase.us`. If you are not running a local copy of kbase-ui with `ci.kbase.us` proxied to it, the tests will run against our `ci` runtime.
 
@@ -125,5 +127,5 @@ Here is how I can begin to get tests running in a container. So far, I've manage
 
 In order to perform cross-browser, cross-browser-version, and cross-os testing, a testing service (or a small army of QA testers) is required.
 
-Although we've set up integration testing through a testing service, this has not be implemented in this project yet.
+Although we've set up integration testing through a testing service, this has not been implemented in this project yet.
 
