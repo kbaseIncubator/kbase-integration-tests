@@ -27,7 +27,7 @@ where:
 - `PYTHONPATH` should be set to repo root directory
 - `KBASE_TOKEN` is a KBase Login, Dev, or other auth token for the account for which test data has been generated
 
-Note that currently the test data is owned by the user `kbaseuitest` and is not public. This account has not special authorizations, so the token must be a Login token for this account. Please ask the UI team for a token for this account.
+Note that currently the test data is owned by the user `kbaseuitest` and is not public. This account has no special authorizations, so the token must be a Login token for this account. Please ask the UI team for a token for this account.
 
 This will run the tests against `https://ci.kbase.us`. If you are not running a local copy of kbase-ui with `ci.kbase.us` proxied to it, the tests will run against our `ci` runtime.
 
