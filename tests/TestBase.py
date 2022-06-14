@@ -14,7 +14,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
-DEFAULT_TIMEOUT = 30  # seconds
+from tests.kbase_ui.expected_conditions import element_attribute_has_value, element_attribute_is_value
+
+DEFAULT_TIMEOUT = 10  # seconds
 
 
 class TestBase(unittest.TestCase):
@@ -104,6 +106,7 @@ class TestBase(unittest.TestCase):
             self.setup_chrome()
         elif self.run_browser == 'firefox':
             self.setup_firefox()
+        self.browser.implicitly_wait(DEFAULT_TIMEOUT)
 
     def login(self):
         self.browser.delete_all_cookies()
@@ -140,12 +143,6 @@ class TestBase(unittest.TestCase):
 
     def wait_for_visibility_xpath(self, xpath):
         return self.wait.until(expected_conditions.visibility_of_element_located((By.XPATH, xpath)))
-
-    def wait_for_element_containing_text(self, xpath, text):
-        return self.browser.find_element(By.XPATH, f"{xpath}//*[contains(text(), '{text}')]")
-
-    def wait_for_element_with_text(self, xpath, text):
-        return self.browser.find_element(By.XPATH, f"{xpath}//*[text()='{text}']")
 
     def wait_for_element_with_value(self, xpath, text):
         return self.browser.find_element(By.XPATH, f"{xpath}//*[@value='{text}']")
@@ -191,19 +188,19 @@ class TestBase(unittest.TestCase):
         control = self.wait_for_visibility_xpath(xpath)
         control.send_keys(Keys.RETURN)
 
-    def wait_for_labeled_text(self, xpath, label, text):
-        label = self.wait_for_element_with_text(xpath, label)
+    def wait_for_labeled_text(self, label, text, xpath=None):
+        label = self.find_element_with_text(label, xpath=xpath)
         label_for = label.get_attribute('for')
         self.wait_for_text_xpath(f'//*[@id="{label_for}"]', text)
 
-    def wait_for_labeled_input(self, xpath, label, text):
-        label = self.wait_for_element_with_text(xpath, label)
+    def wait_for_labeled_input(self, label, text, xpath=None):
+        label = self.find_element_with_text(label, xpath)
         label_for = label.get_attribute('for')
         input = self.wait_for_visibility_xpath(f'//input[@id="{label_for}"]')
         self.assertEqual(input.get_attribute('value'), text)
 
-    def wait_for_table_cell_text(self, xpath, label, row_number, text):
-        header_col = self.wait_for_element_with_text(xpath, label)
+    def wait_for_table_cell_text(self, label, row_number, text, xpath=None):
+        header_col = self.find_element_with_text(label, xpath=xpath)
         row = header_col.find_element(By.XPATH, './ancestor::tr')
         table = row.find_element(By.XPATH, './ancestor::table')
         header_cols = row.find_elements(By.XPATH, 'th')
@@ -219,3 +216,32 @@ class TestBase(unittest.TestCase):
         # table = header_col.find_element(By.XPATH, f'./ancestor::table/tbody/tr')
         cell = table.find_element(By.XPATH, f'tbody/tr[{row_number}]/td[{found_col_number + 1}]')
         self.assertEqual(cell.text, text)
+
+    def find_element_containing_text(self, text, xpath='//', start_from=None):
+        if start_from is None:
+            start_from = self.browser
+
+        # this for of contains and text works correctly for cases with multiple text nodes.
+        return start_from.find_element(By.XPATH, f'{xpath}*[text()[contains(.,"{text}")]]')
+
+    def find_element_with_text(self, text, xpath=None, start_from=None):
+        if xpath is None:
+            xpath = '//*'
+        if start_from is None:
+            start_from = self.browser
+
+        return start_from.find_element(By.XPATH, f"{xpath}[text()='{text}']")
+
+    def find_by_text(self, text, start_from=None, xpath='//'):
+        if start_from is not None:
+            return start_from.find_element(By.XPATH, f'{xpath}*[text()="{text}"]')
+        else:
+            return self.browser.find_element(By.XPATH, f'{xpath}*[text()="{text}"]')
+
+    def wait_for_attribute_contains(self, start_from, name, value):
+        # self.wait.until(expected_conditions.element_attribute_to_include())
+        self.wait.until(element_attribute_has_value(start_from, name, value))
+
+    def wait_for_attribute_equal(self, start_from, name, value):
+        # self.wait.until(expected_conditions.element_attribute_to_include())
+        self.wait.until(element_attribute_is_value(start_from, name, value))

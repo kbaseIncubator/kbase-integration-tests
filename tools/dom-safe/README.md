@@ -158,7 +158,7 @@ For data provided by ca
 Of course it would be possible to detect many more safe cases, but that would be quite complex and involve static analysis, a bit beyond this scope.
 
 Code fixes involving patching jquery were not considered.
-
+f
 In some cases, code was found to be unused and was simply removed.
 
 Ultimately the best solution for the vast majority of cases would be rewriting in a safe manner using modern techniques. For instance:

@@ -23,9 +23,9 @@ class AboutTest(KBaseUIBase):
         self.switch_to_iframe()
 
         # These look for some element which includes the given text
-        self.wait_for_element_with_text('', 'Welcome to KBase')
-        self.wait_for_element_with_text('', 'New to KBase?')
-        self.wait_for_element_with_text('', 'Need Help?')
+        self.find_element_with_text('Welcome to KBase')
+        self.find_element_with_text('New to KBase?')
+        self.find_element_with_text('Need Help?')
 
     # About Page
 
