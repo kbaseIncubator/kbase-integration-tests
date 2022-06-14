@@ -141,14 +141,23 @@ class TestBase(unittest.TestCase):
     def wait_for_visibility_xpath(self, xpath):
         return self.wait.until(expected_conditions.visibility_of_element_located((By.XPATH, xpath)))
 
-    def wait_for_element_with_text(self, xpath, text):
+    def wait_for_element_containing_text(self, xpath, text):
         return self.browser.find_element(By.XPATH, f"{xpath}//*[contains(text(), '{text}')]")
+
+    def wait_for_element_with_text(self, xpath, text):
+        return self.browser.find_element(By.XPATH, f"{xpath}//*[text()='{text}']")
+
+    def wait_for_element_with_value(self, xpath, text):
+        return self.browser.find_element(By.XPATH, f"{xpath}//*[@value='{text}']")
 
     def wait_for_elements_by_xpath(self, xpath):
         return self.wait.until(expected_conditions.visibility_of_all_elements_located((By.XPATH, xpath)))
 
     def wait_for_title(self, title):
         self.wait.until(expected_conditions.title_is(title))
+
+    def get_parent(self, element):
+        return element.find_element(By.XPATH, '..')
 
     def click(self, xpath):
         element = self.wait.until(expected_conditions.element_to_be_clickable((By.XPATH, xpath)))
@@ -181,3 +190,32 @@ class TestBase(unittest.TestCase):
     def push_enter(self, xpath):
         control = self.wait_for_visibility_xpath(xpath)
         control.send_keys(Keys.RETURN)
+
+    def wait_for_labeled_text(self, xpath, label, text):
+        label = self.wait_for_element_with_text(xpath, label)
+        label_for = label.get_attribute('for')
+        self.wait_for_text_xpath(f'//*[@id="{label_for}"]', text)
+
+    def wait_for_labeled_input(self, xpath, label, text):
+        label = self.wait_for_element_with_text(xpath, label)
+        label_for = label.get_attribute('for')
+        input = self.wait_for_visibility_xpath(f'//input[@id="{label_for}"]')
+        self.assertEqual(input.get_attribute('value'), text)
+
+    def wait_for_table_cell_text(self, xpath, label, row_number, text):
+        header_col = self.wait_for_element_with_text(xpath, label)
+        row = header_col.find_element(By.XPATH, './ancestor::tr')
+        table = row.find_element(By.XPATH, './ancestor::table')
+        header_cols = row.find_elements(By.XPATH, 'th')
+        found_col_number = None
+        for col_number, col in enumerate(header_cols):
+            if col.text == label:
+                found_col_number = col_number
+                break
+
+        self.assertIsNotNone(found_col_number)
+
+        # row = self.wait_for_elements_by_xpath(f'{header_col.generateXPATH}')
+        # table = header_col.find_element(By.XPATH, f'./ancestor::table/tbody/tr')
+        cell = table.find_element(By.XPATH, f'tbody/tr[{row_number}]/td[{found_col_number + 1}]')
+        self.assertEqual(cell.text, text)

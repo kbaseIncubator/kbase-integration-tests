@@ -19,7 +19,7 @@ poetry install
 then  
 
 ```shell
- PYTHONPATH="$PWD" KBASE_TOKEN=<KBaseToken> poetry run pytest `pwd`/tests
+ PYTHONPATH="$PWD" KBASE_TOKEN=<KBaseToken> poetry run pytest ./tests
  ```
  
 where:
@@ -27,7 +27,7 @@ where:
 - `PYTHONPATH` should be set to repo root directory
 - `KBASE_TOKEN` is a KBase Login, Dev, or other auth token for the account for which test data has been generated
 
-Note that currently the test data is owned by the user `kbaseuitest` and is not public. This account has no special authorizations, so the token must be a Login token for this account. Please ask the UI team for a token for this account.
+Note that currently the test data is owned by the user `kbaseuitest` and is not public. This account has nopoe special authorizations, so the token must be a Login token for this account. Please ask the UI team for a token for this account.
 
 This will run the tests against `https://ci.kbase.us`. If you are not running a local copy of kbase-ui with `ci.kbase.us` proxied to it, the tests will run against our `ci` runtime.
 
@@ -43,7 +43,7 @@ For repeated test runs, it is recommended to export environment variables one ti
 then to run tests separately
 
 ```shell
- poetry run pytest `pwd`/tests
+ poetry run pytest ./tests
 ```
 
 To focus tests you may simply narrow the scope for discovery, even down to the individual file. E.g.
@@ -51,13 +51,13 @@ To focus tests you may simply narrow the scope for discovery, even down to the i
 this will run just the dataview plugin tests:
  
 ```shell
- poetry run pytest `pwd`/tests/plugins/dataview
+ poetry run pytest ./tests/plugins/dataview
 ```
 
 or this will run just the feeds plugin tests:
 
 ```shell
- poetry run pytest `pwd`/tests/plugins/test_feeds.py
+ poetry run pytest ./tests/plugins/test_feeds.py
 ```
 
 ### Optional environment variables
@@ -73,13 +73,13 @@ or this will run just the feeds plugin tests:
 For example, it is common when debugging tests to run non-headless:
 
 ```shell
-HEADLESS=f poetry run pytest `pwd`/tests/plugins/test_feeds.py
+HEADLESS=f poetry run pytest ./tests/plugins/test_feeds.py
 ```
 
 or to run in a different browser, for perspective:
 
 ```shell
-BROWSER=firefox HEADLESS=f poetry run pytest `pwd`/tests/plugins/test_feeds.py
+BROWSER=firefox HEADLESS=f poetry run pytest ./tests/plugins/test_feeds.py
 ```
 
 ### GitHub Token
