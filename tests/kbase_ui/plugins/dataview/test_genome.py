@@ -12,77 +12,124 @@ class DataviewGenomeTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'panels': [
+                    'label': 'Data View',
+                    'tabs': [
                         {
-                            'title': 'Overview',
-                            'expectations': [
+                            'label': 'Genome Overview',
+                            'sections': [
                                 {
-                                    'type': 'rotated_table',
-                                    'data': [
-                                        ['Name', 'Rhodobacter sphaeroides 2.4.1'],
-                                        ['KBase Genome ID', 'Rhodobacter_sphaeroides_2.4.1'],
-                                        ['Domain', 'Bacteria'],
-                                        ['DNA Length', '4,602,977'],
-                                        ['Source ID', 'NCBI: NCBI'],
-                                        ['Number of Contigs', '7'],
-                                        ['GC Content', '68.79 %'],
-                                        ['Genetic Code', '11'],
-                                        ['Number of features', '4,347']
+                                    'title': 'Summary and Stats',
+                                    'expectations': [
+                                        {
+                                            'type': 'rotated_table',
+                                            'data': [
+                                                ['Name', 'Rhodobacter sphaeroides 2.4.1'],
+                                                ['KBase Genome ID', 'Rhodobacter_sphaeroides_2.4.1'],
+                                                ['Domain', 'Bacteria'],
+                                                ['DNA Length', '4,602,977'],
+                                                ['Source', 'NCBI'],
+                                                ['Source ID', 'NCBI'],
+                                                ['Number of Contigs', '7'],
+                                                ['GC Content', '68.79%'],
+                                                ['Genetic Code', '11'],
+                                                ['Number of Features', '4,347']
+                                            ]
+                                        }
                                     ]
                                 },
-                            ]
-                        },
-                        {
-                            'title': 'Publications',
-                            'notes': [
-                                'Will trigger 429 (too many requests) if tests run too often'
-                            ],
-                            'expectations': [
                                 {
-                                    'type': 'table',
-                                    'data': [
-                                        ['Microorganisms',
-                                         'Wang H, Sha X, Li R, Li Y, Khaleque HN, Zhang Y, Bohu T, Bai Z, Zhuang X',
-                                         'Comparative Genome Analysis Provides Molecular Evidence for Reclassification of the Photosynthetic Bacterium Rhodobacter sphaeroides EBL0706 as a Strain of Luteovulum azotoformans.',
-                                         '2021'],
-                                        # ['', '', '', ''],
+                                    'title': 'From Wikipedia',
+                                    'expectations': [
+                                        {
+                                            'type': 'text',
+                                            'contains': [
+                                                'is a kind of purple bacterium',
+                                                'The regulation of its photosynthetic machinery is of great interest'
+                                            ]
+                                        }
                                     ]
                                 }
                             ]
                         },
                         {
-                            'title': 'Taxonomy',
-                            'expectations': [
+                            'label': 'Publications',
+                            'sections': [
                                 {
-                                    'type': 'text',
-                                    'xpath': 'div[@data-element="new-lineage"]/div[1]',
-                                    'data': 'New Lineage'
+                                    'title': 'Publications in PubMed',
+                                    'expectations': [
+                                        {
+                                            'type': 'data-table',
+                                            'data': [
+                                                ['Microorganisms', 'Wang H, Sha X, Li R, Li Y, Khaleque HN',
+                                                 'Comparative Genome Analysis Provides Molecular Evidence for Reclassification']
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            'label': 'Taxonomy',
+                            'sections': [
+                                {
+                                    'title': 'Lineage',
+                                    'expectations': [
+                                        {
+                                            'type': 'rotated_table',
+                                            'data': [
+                                                ['Scientific Name', 'Rhodobacter sphaeroides 2.4.1']
+                                            ]
+                                        }
+                                    ]
                                 },
                                 {
-                                    'type': 'text',
-                                    'xpath': 'div[@data-element="new-lineage"]/div[2]',
-                                    'data': 'No lineage found'
+                                    'title': 'Species Tree',
+                                    'expectations': [{
+                                        'type': 'text',
+                                        'contains': [
+                                            'A species tree was not found for this genome.'
+                                        ]
+                                    }]
                                 }
                             ]
-                        },
-                        {
-                            'title': 'Assembly and Annotation',
-                            'expectations': [
+                        }, {
+                            'label': 'Assembly and Annotation',
+                            'sections': [
                                 {
-                                    'type': 'table',
-                                    'data': [
-                                        ['RSP_4039', 'NC_007488', '1733', '+', '363', 'CDS',
-                                         'IMG reference gene:2512957466; PFAM: Protein of unknown function, DUF583'],
-                                        # ['', '', '', '', '', '', ''],
-                                    ]
+                                    'title': 'Contig Browser',
+                                    'expectations': [{
+                                        'type': 'text',
+                                        'contains': [
+                                            'Click on a feature to view details'
+                                        ]
+                                    }]
+                                },
+                                {
+                                    'title': 'SEED Functions',
+                                    'expectations': [{
+                                        'type': 'text',
+                                        'contains': [
+                                            'No Functional Categories assigned, you can add them using the Narrative.'
+                                        ]
+                                    }]
+                                },
+                                {
+                                    'title': 'Gene Table',
+                                    'expectations': [{
+                                        'type': 'table',
+                                        'data': [
+                                            ['RSP_4039', 'NC_007488', '1733', '+', '363', 'CDS',
+                                             'IMG reference gene:2512957466; PFAM: Protein of unknown function, DUF583'],
+                                        ]
+                                    }]
                                 }
                             ]
-                        }
-                    ]
+                        }]
                 },
                 'overview': {
                     'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'Genome'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
@@ -92,7 +139,7 @@ class DataviewGenomeTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseGenomes'],
                                     ['Type', 'Genome'],
@@ -112,7 +159,9 @@ class DataviewGenomeTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                # Probably should be a rotated table, because it doesn't have
+                                # a header row
+                                'table': [
                                     ['v1', 'Saved on Jun 3, 2022 by kbaseuitest']
                                 ]
                             }
@@ -126,7 +175,7 @@ class DataviewGenomeTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'data': [[
+                                'table': [[
                                     'Rhodobacter_sphaeroides_2.4.1.contigset',
                                     'ContigSet',
                                     'Jan 15, 2015',

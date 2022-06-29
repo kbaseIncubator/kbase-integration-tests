@@ -12,7 +12,7 @@ class DataviewReferenceAssemblyTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'title': 'Data View',
+                    'label': 'Data View',
                     'expectations': [
                         {
                             'type': 'rotated_table',
@@ -23,8 +23,8 @@ class DataviewReferenceAssemblyTest(DataviewBase):
                     ]
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'ReferenceAssembly'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
@@ -34,7 +34,7 @@ class DataviewReferenceAssemblyTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '8'],
                                     ['Type Module', 'KBaseAssembly'],
                                     ['Type', 'ReferenceAssembly'],
@@ -54,7 +54,7 @@ class DataviewReferenceAssemblyTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 3, 2022 by kbaseuitest'],
                                     ['v2', 'Saved on Jun 3, 2022 by kbaseuitest'],
                                     ['v3', 'Saved on Jun 3, 2022 by kbaseuitest'],

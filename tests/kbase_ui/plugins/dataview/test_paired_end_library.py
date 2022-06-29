@@ -12,9 +12,10 @@ class DataviewPairdEndLibraryTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
+                    'label': 'Data View',
                     'expectations': [
                         {
-                            'type': 'rotated_table',
+                            'type': 'table',
                             'data': [
                                 ['Left reads source file name', '235066e6-35d8-49e5-a7da-b012934835a6.inter.fastq.gz'],
                                 ['Sequencing technology', 'Illumina']
@@ -23,8 +24,8 @@ class DataviewPairdEndLibraryTest(DataviewBase):
                     ]
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'PairedEndLibrary'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
@@ -34,7 +35,7 @@ class DataviewPairdEndLibraryTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseFile'],
                                     ['Type', 'PairedEndLibrary'],
@@ -48,7 +49,7 @@ class DataviewPairdEndLibraryTest(DataviewBase):
                         {
                             'label': 'Metadata',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['sequencing_tech', 'Illumina'],
                                     ['single_genome', '1']
                                 ]
@@ -57,7 +58,7 @@ class DataviewPairdEndLibraryTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 3, 2022 by kbaseuitest']
                                 ]
                             }

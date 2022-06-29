@@ -12,11 +12,12 @@ class DataviewTreeTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
+                    'label': 'Data View',
                     'expectations': []
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'Tree'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
@@ -26,7 +27,7 @@ class DataviewTreeTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseTrees'],
                                     ['Type', 'Tree'],
@@ -46,7 +47,7 @@ class DataviewTreeTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 6, 2022 by kbaseuitest']
                                 ]
                             }
@@ -54,7 +55,7 @@ class DataviewTreeTest(DataviewBase):
                         {
                             'label': 'Referenced by',
                             'expected': {
-                                'data': [
+                                'table': [
                                     [
                                         'blast_report_7be48b21-c85e-40ba-b909-dd16854d7429',
                                         'Report',
@@ -67,8 +68,7 @@ class DataviewTreeTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'data': [
-
+                                'table': [
                                     [
                                         'test_Tree-MUSCLE.MSA',
                                         'MSA',

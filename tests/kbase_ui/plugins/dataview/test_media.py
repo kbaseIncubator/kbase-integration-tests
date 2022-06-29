@@ -29,13 +29,13 @@ class DataviewMediaTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'title': 'Overview',
+                    'label': 'Data View',
                     'tabs': [
                         {
-                            'title': 'Overview',
+                            'label': 'Overview',
                             'expectations': [
                                 {
-                                    'type': 'table',
+                                    'type': 'rotated_table',
                                     'data': [
                                         ['ID', 'kbaseuitest:narrative_1578347520053/Rsp-minimal'],
                                         ['Object type', 'KBaseBiochem.Media-1.0'],
@@ -47,7 +47,7 @@ class DataviewMediaTest(DataviewBase):
                             ]
                         },
                         {
-                            'title': 'Media compounds',
+                            'label': 'Media compounds',
                             'expectations': [
                                 {
                                     'type': 'table',
@@ -64,8 +64,8 @@ class DataviewMediaTest(DataviewBase):
                     ]
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'Media'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jan 6, 2020 by kbaseuitest'],
@@ -75,7 +75,7 @@ class DataviewMediaTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '8'],
                                     ['Type Module', 'KBaseBiochem'],
                                     ['Type', 'Media'],
@@ -95,7 +95,7 @@ class DataviewMediaTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jan 6, 2020 by kbaseuitest'],
                                     ['v2', 'Saved on Jan 6, 2020 by kbaseuitest'],
                                     ['v3', 'Saved on Jan 6, 2020 by kbaseuitest'],

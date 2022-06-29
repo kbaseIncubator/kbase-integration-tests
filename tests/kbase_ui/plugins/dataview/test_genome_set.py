@@ -12,10 +12,10 @@ class DataviewGenomeSetTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'title': 'Data View',
+                    'label': 'Data View',
                     'tabs': [
                         {
-                            'title': 'Overview',
+                            'label': 'Overview',
                             'expectations': [
                                 {
                                     'type': 'table',
@@ -30,11 +30,11 @@ class DataviewGenomeSetTest(DataviewBase):
                             ]
                         },
                         {
-                            'title': 'Genomes',
+                            'label': 'Genomes',
                             'expectations': [
                                 {
                                     'type': 'table',
-                                    'data': [
+                                    'table': [
                                         ['Rhodobacter_CACIA_14H1'],
                                         ['Rhodobacter_sphaeroides_2.4.1'],
                                         ['Rhodobacter_sphaeroides_2.4.1_KBase']
@@ -45,8 +45,8 @@ class DataviewGenomeSetTest(DataviewBase):
                     ]
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'GenomeSet'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
@@ -56,7 +56,7 @@ class DataviewGenomeSetTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseSearch'],
                                     ['Type', 'GenomeSet'],
@@ -76,7 +76,7 @@ class DataviewGenomeSetTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 3, 2022 by kbaseuitest']
                                 ]
                             }
@@ -90,7 +90,7 @@ class DataviewGenomeSetTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'data': [
+                                'table': [
                                     [
                                         'Rhodobacter_CACIA_14H1',
                                         'Genome',

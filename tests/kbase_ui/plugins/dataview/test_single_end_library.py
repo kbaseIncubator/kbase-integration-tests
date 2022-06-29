@@ -12,12 +12,12 @@ class DataviewSingleEndLibraryTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'title': 'Dataview',
+                    'label': 'Data View',
                     'not_supported': True
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'SingleEndLibrary'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
@@ -27,7 +27,7 @@ class DataviewSingleEndLibraryTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseFile'],
                                     ['Type', 'SingleEndLibrary'],
@@ -41,7 +41,7 @@ class DataviewSingleEndLibraryTest(DataviewBase):
                         {
                             'label': 'Metadata',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['sequencing_tech', 'Illumina'],
                                     ['single_genome', '1']
                                 ]
@@ -50,7 +50,7 @@ class DataviewSingleEndLibraryTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 3, 2022 by kbaseuitest']
                                 ]
                             }

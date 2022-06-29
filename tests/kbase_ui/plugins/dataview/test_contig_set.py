@@ -12,8 +12,7 @@ class DataviewContigSetTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'name': 'dataview',
-                    'title': 'Data View',
+                    'label': 'Data View',
                     'expectations': [
                         {
                             'type': 'table',
@@ -28,8 +27,8 @@ class DataviewContigSetTest(DataviewBase):
                     ]
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'ContigSet'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
@@ -39,7 +38,7 @@ class DataviewContigSetTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '8'],
                                     ['Type Module', 'KBaseGenomes'],
                                     ['Type', 'ContigSet'],
@@ -59,7 +58,7 @@ class DataviewContigSetTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 3, 2022 by kbaseuitest'],
                                     ['v2', 'Saved on Jun 3, 2022 by kbaseuitest'],
                                     ['v3', 'Saved on Jun 3, 2022 by kbaseuitest'],

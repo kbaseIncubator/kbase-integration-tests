@@ -12,12 +12,10 @@ class DataviewAssemblyTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'name': 'dataview',
-                    'title': 'Data View',
+                    'label': 'Data View',
                     'panels': [
                         {
-                            'name': 'summary',
-                            'title': 'Summary',
+                            'label': 'Summary',
                             'expectations': [
                                 {
                                     'type': 'table',
@@ -34,7 +32,7 @@ class DataviewAssemblyTest(DataviewBase):
                         },
                         {
                             'name': 'contigs',
-                            'title': 'Contigs',
+                            'label': 'Contigs',
                             'expectations': [
                                 {
                                     'type': 'table',
@@ -52,7 +50,8 @@ class DataviewAssemblyTest(DataviewBase):
                 },
                 'overview': {
                     'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'Assembly'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
@@ -62,7 +61,7 @@ class DataviewAssemblyTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseGenomeAnnotations'],
                                     ['Type', 'Assembly'],
@@ -76,7 +75,7 @@ class DataviewAssemblyTest(DataviewBase):
                         {
                             'label': 'Metadata',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['GC content', '0.31365'],
                                     ['Size', '1700953'],
                                     ['N Contigs', '26'],
@@ -87,7 +86,7 @@ class DataviewAssemblyTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 6, 2022 by kbaseuitest']
                                 ]
                             }

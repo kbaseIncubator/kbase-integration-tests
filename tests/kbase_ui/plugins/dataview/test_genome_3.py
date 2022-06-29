@@ -12,11 +12,128 @@ class DataviewGenome3Test(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'expectations': []
+                    'label': 'Data View',
+                    'tabs': [
+                        {
+                            'label': 'Genome Overview',
+                            'sections': [
+                                {
+                                    'title': 'Summary and Stats',
+                                    'expectations': [
+                                        {
+                                            'type': 'rotated_table',
+                                            'data': [
+                                                ['Name', 'Prochlorococcus marinus str. AS9601'],
+                                                ['KBase Genome ID', 'GCF_000015645.1'],
+                                                ['Domain', 'Bacteria'],
+                                                ['DNA Length', '1,669,886'],
+                                                ['Source', 'RefSeq'],
+                                                ['Source ID', 'NC_008816'],
+                                                ['Number of Contigs', '1'],
+                                                ['GC Content', '31.32%'],
+                                                ['Genetic Code', '11'],
+                                                ['Number of Features', '1,780']
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    'title': 'From Wikipedia',
+                                    'expectations': [
+                                        {
+                                            'type': 'text',
+                                            'contains': [
+                                                'marine cyanobacteria with an unusual pigmentation'
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            'label': 'Publications',
+                            'sections': [
+                                {
+                                    'title': 'Publications in PubMed',
+                                    'expectations': [
+                                        {
+                                            'type': 'text',
+                                            'contains': [
+                                                'Sorry, nothing found for '
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            'label': 'Taxonomy',
+                            'sections': [
+                                {
+                                    'title': 'Lineage',
+                                    'expectations': [
+                                        {
+                                            'type': 'text',
+                                            'contains': [
+                                                'Taxonomy provided by this Object and linked to NCBI.'
+                                            ]
+                                        },
+                                        {
+                                            'type': 'rotated_table',
+                                            'data': [
+                                                ['Scientific Name', 'Prochlorococcus marinus str. AS9601']
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    'title': 'Species Tree',
+                                    'expectations': [
+                                        {
+                                            'type': 'text',
+                                            'contains': [
+                                                'A species tree was not found for this genome.'
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }, {
+                            'label': 'Assembly and Annotation',
+                            'sections': [
+                                {
+                                    'title': 'Contig Browser',
+                                    'expectations': [{
+                                        'type': 'text',
+                                        'contains': [
+                                            'Error loading contig browser: No contigs found on this genome'
+                                        ]
+                                    }]
+                                },
+                                {
+                                    'title': 'SEED Functions',
+                                    'expectations': [
+                                        # TODO: svg testing?
+                                    ]
+                                },
+                                {
+                                    'title': 'Gene Table',
+                                    'expectations': [{
+                                        'type': 'table',
+                                        'data': [
+                                            ['A9601_RS09110', 'NC_008816', '168', '+', '1158', 'gene',
+                                             'DNA polymerase III subunit beta'],
+                                        ]
+                                    }]
+                                }
+                            ]
+                        }
+                    ]
                 },
                 'overview': {
                     'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'Genome'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
@@ -26,7 +143,7 @@ class DataviewGenome3Test(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseGenomes'],
                                     ['Type', 'Genome'],
@@ -40,7 +157,7 @@ class DataviewGenome3Test(DataviewBase):
                         {
                             'label': 'Metadata',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Taxonomy',
                                      'cellular organisms; Bacteria; Terrabacteria group; Cyanobacteria/Melainabacteria group; Cyanobacteria; Synechococcales; Prochloraceae; Prochlorococcus; Prochlorococcus marinus'],
                                     ['Size', '1669886'],
@@ -63,7 +180,7 @@ class DataviewGenome3Test(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 6, 2022 by kbaseuitest']
                                 ]
                             }
@@ -77,7 +194,7 @@ class DataviewGenome3Test(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'data': [
+                                'table': [
                                     [
                                         '146891_taxon',
                                         'Taxon',

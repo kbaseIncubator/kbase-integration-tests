@@ -12,11 +12,13 @@ class DataviewGenome2Test(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'expectations': []
+                    'label': 'Data View',
+                    'tabs': []
                 },
                 'overview': {
                     'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'Genome'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
@@ -26,7 +28,7 @@ class DataviewGenome2Test(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseGenomes'],
                                     ['Type', 'Genome'],
@@ -40,7 +42,7 @@ class DataviewGenome2Test(DataviewBase):
                         {
                             'label': 'Metadata',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Taxonomy',
                                      'Bacteria; Terrabacteria group; Cyanobacteria/Melainabacteria group; Cyanobacteria; Synechococcales; Prochloraceae; Prochlorococcus; Prochlorococcus marinus'],
                                     ['Size', '1669886'],
@@ -62,7 +64,7 @@ class DataviewGenome2Test(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 6, 2022 by kbaseuitest']
                                 ]
                             }
@@ -70,7 +72,7 @@ class DataviewGenome2Test(DataviewBase):
                         {
                             'label': 'Referenced by',
                             'expected': {
-                                'data': [
+                                'table': [
                                     [
                                         'kb_prokka_report_5c28d202-3e52-416a-bf88-443e9825e56e',
                                         'Report',
@@ -83,7 +85,7 @@ class DataviewGenome2Test(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'data': [
+                                'table': [
 
                                     [
                                         'GCF_000015645.1_assembly',

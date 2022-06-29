@@ -12,10 +12,10 @@ class DataviewFBAModelTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
-                    'name': 'Data View',
+                    'label': 'Data View',
                     'tabs': [
                         {
-                            'title': 'Overview',
+                            'label': 'Overview',
                             'expectations': [
                                 {
                                     'type': 'table',
@@ -30,7 +30,7 @@ class DataviewFBAModelTest(DataviewBase):
                             ]
                         },
                         {
-                            'title': 'Reactions',
+                            'label': 'Reactions',
                             'expectations': [
                                 {
                                     'type': 'table',
@@ -46,7 +46,7 @@ class DataviewFBAModelTest(DataviewBase):
                             ]
                         },
                         {
-                            'title': 'Compounds',
+                            'label': 'Compounds',
                             'expectations': [
                                 {
                                     'type': 'table',
@@ -63,8 +63,8 @@ class DataviewFBAModelTest(DataviewBase):
                     ]
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'FBAModel'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
@@ -74,7 +74,7 @@ class DataviewFBAModelTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseFBA'],
                                     ['Type', 'FBAModel'],
@@ -88,7 +88,7 @@ class DataviewFBAModelTest(DataviewBase):
                         {
                             'label': 'Metadata',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Number gapgens', '0'],
                                     ['Type', 'SBML Model'],
                                     ['Number gapfills', '0'],
@@ -106,7 +106,7 @@ class DataviewFBAModelTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 6, 2022 by kbaseuitest']
                                 ]
                             }
@@ -114,7 +114,7 @@ class DataviewFBAModelTest(DataviewBase):
                         {
                             'label': 'Referenced by',
                             'expected': {
-                                'data': [
+                                'table': [
                                     [
                                         'fliu_test_report_9f6c322f-3421-4849-8cdd-70a96f176739',
                                         'Report',
@@ -127,7 +127,7 @@ class DataviewFBAModelTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'data': [
+                                'table': [
 
                                     [
                                         'Empty',

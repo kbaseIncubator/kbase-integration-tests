@@ -12,11 +12,12 @@ class DataviewFeatureSetTest(DataviewBase):
             },
             'tabs': {
                 'dataview': {
+                    'label': 'Data View',
                     'not_supported': True
                 },
                 'overview': {
-                    'name': 'overview',
-                    'tabs': [
+                    'label': 'Object Overview',
+                    'rotated_table': [
                         ['Type', 'FeatureSet'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
@@ -26,7 +27,7 @@ class DataviewFeatureSetTest(DataviewBase):
                         {
                             'label': 'Object Info',
                             'expected': {
-                                'data': [
+                                'rotated_table': [
                                     ['Object Version', '1'],
                                     ['Type Module', 'KBaseCollections'],
                                     ['Type', 'FeatureSet'],
@@ -46,7 +47,7 @@ class DataviewFeatureSetTest(DataviewBase):
                         {
                             'label': 'Versions',
                             'expected': {
-                                'data': [
+                                'table': [
                                     ['v1', 'Saved on Jun 6, 2022 by kbaseuitest']
                                 ]
                             }
@@ -54,7 +55,7 @@ class DataviewFeatureSetTest(DataviewBase):
                         {
                             'label': 'Referenced by',
                             'expected': {
-                                'data': [
+                                'table': [
                                     [
                                         'kb_FeatureSetUtils_report_146eb944-af02-4eea-9fc1-f75e1da10e71',
                                         'Report',
@@ -67,8 +68,7 @@ class DataviewFeatureSetTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'data': [
-
+                                'table': [
                                     [
                                         'Prochlorococcus_marinus_str._AS9601',
                                         'Genome',

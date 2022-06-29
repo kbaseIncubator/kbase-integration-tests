@@ -217,20 +217,28 @@ class TestBase(unittest.TestCase):
         cell = table.find_element(By.XPATH, f'tbody/tr[{row_number}]/td[{found_col_number + 1}]')
         self.assertEqual(cell.text, text)
 
-    def find_element_containing_text(self, text, xpath='//', start_from=None):
+    def find_element_containing_text(self, text, xpath=None, start_from=None):
         if start_from is None:
             start_from = self.browser
+            if xpath is None:
+                xpath = '//*'
+        else:
+            if xpath is None:
+                xpath = './/*'
 
         # this for of contains and text works correctly for cases with multiple text nodes.
-        return start_from.find_element(By.XPATH, f'{xpath}*[text()[contains(.,"{text}")]]')
+        return start_from.find_element(By.XPATH, f'{xpath}[contains(.,"{text}")]')
 
     def find_element_with_text(self, text, xpath=None, start_from=None):
-        if xpath is None:
-            xpath = '//*'
         if start_from is None:
             start_from = self.browser
+            if xpath is None:
+                xpath = '//*'
+        else:
+            if xpath is None:
+                xpath = './/*'
 
-        return start_from.find_element(By.XPATH, f"{xpath}[text()='{text}']")
+        return start_from.find_element(By.XPATH, f'{xpath}[text()="{text}"]')
 
     def find_by_text(self, text, start_from=None, xpath='//'):
         if start_from is not None:
