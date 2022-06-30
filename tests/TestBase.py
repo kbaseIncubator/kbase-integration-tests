@@ -131,6 +131,13 @@ class TestBase(unittest.TestCase):
     def tearDown(self):
         self.browser.close()
 
+    def find_heading(self, level, value):
+        # Note that we need to use .= in order to utilize innerText.
+        # Generally, the content we are matching may be wrapped in inner elements;
+        # we shouldn't care.
+        xpath = f'//*[@role="heading" and @aria-level="{level}" and .="{value}"]'
+        return self.browser.find_element(By.XPATH, xpath)
+
     def wait_for_text_xpath(self, xpath, value):
         self.wait.until(expected_conditions.text_to_be_present_in_element((By.XPATH, xpath), value))
 

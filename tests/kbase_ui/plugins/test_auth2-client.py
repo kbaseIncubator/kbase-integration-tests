@@ -6,7 +6,9 @@ class AuthTest(PluginBase):
         self.navigate('login')
 
         # Make sure the default title appears
-        self.wait_for_text('component', 'title', 'KBase Sign In')
+        self.find_heading(1, 'KBase Sign In')
+
+        # Make sure the browser title is also correct.
         self.wait_for_title('KBase Sign In | KBase')
 
         self.switch_to_iframe()
@@ -16,9 +18,19 @@ class AuthTest(PluginBase):
         def signin_button_xpath(name):
             return f'{plugin_xpath}//*[@data-k-b-testhook-component="signin-button"][@data-k-b-testhook-name="{name}"]'
 
-        # TODO: plugin testhook is nested inside the plugin!
-        self.find_element_with_text('Welcome to KBase')
+        # def is_button(label):
+        #     element = self.find_by_text(label)
+        #
+        # is_button('Google')
+        # is_button('ORCID')
+        # is_button('Globus')
 
+        # TODO: plugin testhook is nested inside the plugin!
+        self.find_by_text('Welcome to KBase')
+
+        # TODO: these are explicitly by xpath because the buttons are images.
+        # We should refactor the buttons to text so we can simply search for them
+        # on the page.
         self.wait_for_visibility_xpath(signin_button_xpath('google'))
         self.wait_for_visibility_xpath(signin_button_xpath('orcid'))
         self.wait_for_visibility_xpath(signin_button_xpath('globus'))
@@ -31,7 +43,8 @@ class AuthTest(PluginBase):
         self.navigate('auth2/signedout')
 
         # Make sure the default title appears
-        self.wait_for_text('component', 'title', 'Signed Out')
+        self.find_heading(1, 'Signed Out')
+        # self.wait_for_text('component', 'title', 'Signed Out')
         self.wait_for_title('Signed Out | KBase')
 
         self.switch_to_iframe()
