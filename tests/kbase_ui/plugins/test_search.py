@@ -6,8 +6,7 @@ class SearchTest(PluginBase):
         self.login_navigate('search')
 
         # Make sure the default title appears
-        self.wait_for_text('component', 'title', 'Data Search (BETA)')
-        self.wait_for_title('Data Search (BETA) | KBase')
+        self.assert_title('Data Search (BETA)')
 
     def test_unauthenticated(self):
         self.auth_blocked_plugin('search')

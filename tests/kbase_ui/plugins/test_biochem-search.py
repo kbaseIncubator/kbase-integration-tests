@@ -2,12 +2,11 @@ from tests.kbase_ui.plugins.PluginBase import PluginBase
 
 
 class BiochemSearchTest(PluginBase):
-    def est_authenticated_initial_page(self):
+    def test_authenticated_initial_page(self):
         self.login_navigate('biochem-search')
 
         # Make sure the default title appears
-        self.wait_for_text('component', 'title', 'Biochem Search')
-        self.wait_for_title('Biochem Search | KBase')
+        self.assert_title('Biochem Search')
 
         self.switch_to_iframe()
 

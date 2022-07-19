@@ -18,7 +18,7 @@ class AboutTest(KBaseUIBase):
         self.navigate('')
 
         # Make sure the default unauthenticated title appears
-        self.wait_for_titles('KBase Sign In')
+        self.assert_title('KBase Sign In')
 
         self.switch_to_iframe()
 
@@ -30,8 +30,9 @@ class AboutTest(KBaseUIBase):
     # About Page
 
     def assert_about(self):
-        self.wait_for_titles('About')
-        self.wait_for_text('component', 'mainwindow', 'About')
+        self.assert_title('About')
+        # self.wait_for_titles('About')
+        # self.wait_for_text('component', 'mainwindow', 'About')
         # self.wait_for_text('panel', 'welcome', 'The KBase User Interface')
         self.wait_for_panel_title('welcome', 'The KBase User Interface')
         self.wait_for_panel_title('build-info', 'This Version')
@@ -49,11 +50,11 @@ class AboutTest(KBaseUIBase):
     def test_unauthenticated_about_services(self):
         self.navigate('about/services')
 
-        self.wait_for_titles('KBase Core and Dynamic Service Versions and Perf')
+        self.assert_title('KBase Core and Dynamic Service Versions and Perf')
 
     # About Plugins Page
 
     def test_unauthenticated_about_plugins(self):
         self.navigate('about/plugins')
 
-        self.wait_for_titles('About KBase UI Plugins')
+        self.assert_title('About KBase UI Plugins')

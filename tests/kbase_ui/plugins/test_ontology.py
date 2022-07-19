@@ -10,8 +10,7 @@ class OntologyTest(PluginBase):
         self.login_navigate(path)
 
         title = f'Ontology Landing Page for "{name}" ({term})'
-        self.wait_for_text('component', 'title', title)
-        self.wait_for_title(f'{title} | KBase')
+        self.assert_title(title)
 
     def test_unauthenticated_ontology_term(self):
         namespace = 'envo_ontology'

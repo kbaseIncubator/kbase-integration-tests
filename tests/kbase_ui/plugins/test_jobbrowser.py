@@ -6,8 +6,7 @@ class JobsBrowserTest(PluginBase):
         self.login_navigate('jobbrowser')
 
         # Make sure the default title appears
-        self.wait_for_text('component', 'title', 'Job Browser')
-        self.wait_for_title('Job Browser | KBase')
+        self.assert_title('Job Browser')
 
     def test_unauthenticated(self):
         self.auth_blocked_plugin('jobbrowser')

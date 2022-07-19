@@ -196,18 +196,33 @@ class TestBase(unittest.TestCase):
         control.send_keys(Keys.RETURN)
 
     def wait_for_labeled_text(self, label, text, xpath=None):
-        label = self.find_element_with_text(label, xpath=xpath)
+        label = self.find_element_with_text(label, xpath='//*[@role="label"]')
         label_for = label.get_attribute('for')
         self.wait_for_text_xpath(f'//*[@id="{label_for}"]', text)
 
+    def assert_labeled_text(self, label, text, comparison='equal', xpath=None, start_from=None):
+        if start_from is None:
+            start_from = self.browser
+
+        label_element = self.find_element_with_text(label, xpath='//*[@role="label"]', start_from=start_from)
+        label_for = label_element.get_attribute('for')
+        text_element = start_from.find_element(By.XPATH, f'//*[@id="{label_for}"]')
+        if comparison == 'equal':
+            self.assertEqual(text_element.text, text)
+        elif comparison == 'regex':
+            self.assertRegex(text_element.text, text)
+        # self.wait_for_text_xpath(f'//*[@id="{label_for}"]', text)
+
     def wait_for_labeled_input(self, label, text, xpath=None):
-        label = self.find_element_with_text(label, xpath)
+        label = self.find_element_with_text(label, xpath='//*[@role="label"]')
         label_for = label.get_attribute('for')
         input = self.wait_for_visibility_xpath(f'//input[@id="{label_for}"]')
         self.assertEqual(input.get_attribute('value'), text)
 
-    def wait_for_table_cell_text(self, label, row_number, text, xpath=None):
-        header_col = self.find_element_with_text(label, xpath=xpath)
+    def assert_table_cell_text(self, label, row_number, text, xpath=None, start_from=None):
+        # First we locate the header column with the given label, in order to
+        # determine the column number.
+        header_col = self.find_element_with_text(label, xpath='//table/thead/tr/th', start_from=start_from)
         row = header_col.find_element(By.XPATH, './ancestor::tr')
         table = row.find_element(By.XPATH, './ancestor::table')
         header_cols = row.find_elements(By.XPATH, 'th')
@@ -219,12 +234,16 @@ class TestBase(unittest.TestCase):
 
         self.assertIsNotNone(found_col_number)
 
-        # row = self.wait_for_elements_by_xpath(f'{header_col.generateXPATH}')
-        # table = header_col.find_element(By.XPATH, f'./ancestor::table/tbody/tr')
+        # Then we can find the cell identified by the column determined above
+        # and the row number parameter.
         cell = table.find_element(By.XPATH, f'tbody/tr[{row_number}]/td[{found_col_number + 1}]')
+
+        # And finally can assert the value of that cell.
+        # TODO: as with other locations, we can apply different comparisons here
+        # if we pass in a parameter to control it.
         self.assertEqual(cell.text, text)
 
-    def find_element_containing_text(self, text, xpath=None, start_from=None):
+    def find_element_containing_text(self, text, xpath=None, start_from=None, include_descendents=False):
         if start_from is None:
             start_from = self.browser
             if xpath is None:
@@ -232,11 +251,20 @@ class TestBase(unittest.TestCase):
         else:
             if xpath is None:
                 xpath = './/*'
+
+        if include_descendents:
+            text_operator = '.'
+        else:
+            text_operator = 'text()'
 
         # this for of contains and text works correctly for cases with multiple text nodes.
-        return start_from.find_element(By.XPATH, f'{xpath}[contains(.,"{text}")]')
+        if '"' in text:
+            # xpath 1.0 does not support quote escape ("").
+            return start_from.find_element(By.XPATH, f"{xpath}[contains({text_operator},'{text}')]")
+        else:
+            return start_from.find_element(By.XPATH, f'{xpath}[contains({text_operator},"{text}")]')
 
-    def find_element_with_text(self, text, xpath=None, start_from=None):
+    def find_element_with_text(self, text, xpath=None, start_from=None, include_descendents=False):
         if start_from is None:
             start_from = self.browser
             if xpath is None:
@@ -245,7 +273,24 @@ class TestBase(unittest.TestCase):
             if xpath is None:
                 xpath = './/*'
 
-        return start_from.find_element(By.XPATH, f'{xpath}[text()="{text}"]')
+        if include_descendents:
+            text_operator = '.'
+        else:
+            text_operator = 'text()'
+
+        if '"' in text:
+            # xpath 1.0 does not support quote escape ("").
+            return start_from.find_element(By.XPATH, f"{xpath}[{text_operator}='{text}']")
+        else:
+            return start_from.find_element(By.XPATH, f'{xpath}[{text_operator}="{text}"]')
+
+    def find_header_with_text(self, text):
+        return self.find_element_with_text(text, xpath='//*[@role="heading"][@aria-level="1"]')
+
+    def assert_title(self, title, include_descendent=False):
+        self.find_element_with_text(title, xpath='//*[@role="heading"][@aria-level="1"]',
+                                    include_descendents=include_descendent)
+        self.wait_for_title(f'{title} | KBase')
 
     def find_by_text(self, text, start_from=None, xpath='//'):
         if start_from is not None:
@@ -260,3 +305,9 @@ class TestBase(unittest.TestCase):
     def wait_for_attribute_equal(self, start_from, name, value):
         # self.wait.until(expected_conditions.element_attribute_to_include())
         self.wait.until(element_attribute_is_value(start_from, name, value))
+
+    def assert_aria_button(self, label, start_from=None):
+        if start_from is None:
+            start_from = self.browser
+        return start_from.find_element(By.XPATH,
+                                       f'//*[@role="button"][@aria-label="{label}"]')

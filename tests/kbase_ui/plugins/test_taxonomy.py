@@ -11,8 +11,7 @@ class TaxonomyTest(PluginBase):
         self.login_navigate(path)
 
         title = f'Taxonomy Landing Page for "{name}"'
-        self.wait_for_text('component', 'title', title)
-        self.wait_for_title(f'{title} | KBase')
+        self.assert_title(title)
 
     def test_unauthenticated_taxonomy_view(self):
         # https://ci.kbase.us/#taxonomy/taxon/ncbi_taxonomy/562

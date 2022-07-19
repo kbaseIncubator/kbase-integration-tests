@@ -9,8 +9,7 @@ class SamplesTest(PluginBase):
 
         # Make sure the default title appears
         title = f'Sample View for "{sample_name}"'
-        self.wait_for_text('component', 'title', title)
-        self.wait_for_title(f'{title} | KBase')
+        self.assert_title(title)
 
     def test_unauthenticated_sample_view(self):
         sample_id = '1e476e13-20be-4133-bf8a-6a5681423070'

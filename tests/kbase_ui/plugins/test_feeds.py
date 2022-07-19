@@ -5,12 +5,13 @@ class FeedsTest(PluginBase):
     def test_authenticated_basic(self):
         self.login_navigate('feeds')
 
-        # Make sure the default title appears
-        self.wait_for_text('component', 'title', 'Notification Feeds')
-        self.wait_for_title('Notification Feeds | KBase')
+        # Make sure the title appears
+        self.assert_title('Notification Feeds')
 
         self.switch_to_iframe()
 
+        # TODO: feeds should be refactored to use roles, then we can
+        # remove the testhooks.
         feeds_tab = self.kbase_testhook([['element', 'tabs']])
         global_tab = f'{feeds_tab}//*[@data-name="global"]'
         self.wait_for_text_xpath(global_tab, 'KBase Announcements')

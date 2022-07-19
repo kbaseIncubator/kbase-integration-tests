@@ -69,14 +69,6 @@ class DataviewBase(PluginBase):
         #       cell.get_attribute('outerText'), cell_content)
         # self.assertRegex(cell_content, column_value)
 
-    def assert_table(self, start_from, table_data):
-        for row_number, column_data in enumerate(table_data):
-            for column_number, column_value in enumerate(column_data):
-                xpath = f'.//table/tbody/tr[{row_number + 1}]/td[{column_number + 1}]'
-                cell = start_from.find_element(By.XPATH, xpath)
-                cell_content = cell.get_attribute('innerText')
-                self.assertEqual(cell_content, column_value)
-
     def dataview_overview_table(self, cases):
         # Find the summary area, the table should be located within the same
         # parent as the header.
@@ -173,8 +165,7 @@ class DataviewBase(PluginBase):
         self.login_navigate(f'dataview/{object_case["ref"]}')
 
         # Make sure the default title appears
-        self.wait_for_text('component', 'title', f'Data View for {object_case["name"]}')
-        self.wait_for_title(f'Data View for {object_case["name"]} | KBase')
+        self.assert_title(f'Data View for {object_case["name"]}')
 
         self.switch_to_iframe()
 
@@ -286,6 +277,7 @@ class DataviewBase(PluginBase):
 
         def select_panel(panel_number):
             panel_title = self.find_element_with_text(case['label'])
+            print('title', panel_title, panel_title.get_attribute('class'))
             panel = panel_title.find_element(By.XPATH, './ancestor::*[contains(@class,"panel")]')
             return panel
             # panel = f'{dataview_tab_pane}//div[@data-element="panel"]/div[{panel_number}]'

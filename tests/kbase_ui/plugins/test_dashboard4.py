@@ -6,8 +6,7 @@ class Dashboard4Test(PluginBase):
         self.login_navigate('dashboard4')
 
         # Make sure the default title appears
-        self.wait_for_text('component', 'title', 'Dashboard the Fourth')
-        self.wait_for_title('Dashboard the Fourth | KBase')
+        self.assert_title('Dashboard the Fourth')
 
     def test_unauthenticated(self):
         self.auth_blocked_plugin('dashboard4')
