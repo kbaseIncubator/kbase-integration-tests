@@ -22,6 +22,17 @@ class PluginBase(KBaseUIBase):
                 cell_content = cell.get_attribute('innerText')
                 self.assertEqual(cell_content, column_value)
 
+    def assert_data_table(self, start_from, table_data):
+        for row_number, column_data in enumerate(table_data):
+            for column_number, column_value in enumerate(column_data):
+                if column_value is None:
+                    # skip null values for now.
+                    continue
+                xpath = f'.//*[@role="table"]//*[@role="row"][{row_number + 1}]//*[@role="cell"][{column_number + 1}]'
+                cell = start_from.find_element(By.XPATH, xpath)
+                cell_content = cell.get_attribute('innerText')
+                self.assertEqual(cell_content, column_value)
+
     def assert_table2(self, header=None, rows=None, row_count=None, start_from=None):
         if start_from is None:
             start_from = self.browser

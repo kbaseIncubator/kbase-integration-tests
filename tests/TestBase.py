@@ -70,6 +70,7 @@ class TestBase(unittest.TestCase):
 
     def setup_chrome(self):
         chrome_options = Options()
+        chrome_options.add_argument('--no-sandbox')
         if self.run_headless:
             chrome_options.add_argument('--headless')
         chrome_options.add_argument('--window-size=1920,1080')

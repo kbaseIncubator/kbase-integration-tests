@@ -5,6 +5,8 @@ class DataviewGenome3Test(DataviewBase):
     def test_authenticated_prochlorococcus_2(self):
         object_case = {
             'ref': '45593/11/1',
+            'sub': 'cds',
+            'subid': 'WP_011817478.1',
             'name': 'prokka_ouput_1',
             'type': 'KBaseGenomes.Genome-17.0',
             'header': {
@@ -13,118 +15,85 @@ class DataviewGenome3Test(DataviewBase):
             'tabs': {
                 'dataview': {
                     'label': 'Data View',
-                    'tabs': [
+                    'sections': [
                         {
-                            'label': 'Genome Overview',
-                            'sections': [
+                            'title': 'CDS Overview',
+                            'expectations': [
                                 {
-                                    'title': 'Summary and Stats',
-                                    'expectations': [
-                                        {
-                                            'type': 'rotated_table',
+                                    'type': 'rotated_table',
+                                    'data': [
+                                        ['Genome', 'GCF_000015645.1'],
+                                        ['Scientific name', 'Prochlorococcus marinus str. AS9601'],
+                                        ['Functions', 'DNA polymerase III subunit beta'],
+                                        ['Length', '1,158 bp, 385 aa'],
+                                        ['Location', '168 to 1,325 (+)'],
+                                        ['Aliases', [{
+                                            'type': 'table',
                                             'data': [
-                                                ['Name', 'Prochlorococcus marinus str. AS9601'],
-                                                ['KBase Genome ID', 'GCF_000015645.1'],
-                                                ['Domain', 'Bacteria'],
-                                                ['DNA Length', '1,669,886'],
-                                                ['Source', 'RefSeq'],
-                                                ['Source ID', 'NC_008816'],
-                                                ['Number of Contigs', '1'],
-                                                ['GC Content', '31.32%'],
-                                                ['Genetic Code', '11'],
-                                                ['Number of Features', '1,780']
+                                                ['gene_synonym', 'A9601_RS09110'],
+                                                ['gene_synonym', 'WP_011817478.1'],
+                                                ['gene_synonym', 'A9601_00001'],
+                                                ['gene_synonym', 'GI:500141475']
                                             ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    'title': 'From Wikipedia',
-                                    'expectations': [
-                                        {
-                                            'type': 'text',
-                                            'contains': [
-                                                'marine cyanobacteria with an unusual pigmentation'
-                                            ]
-                                        }
+                                        }]],
+                                        ['Parent Gene', 'A9601_RS09110'],
+                                        ['Note', 'n/a'],
+                                        ['Warnings', 'n/a']
                                     ]
                                 }
                             ]
                         },
                         {
-                            'label': 'Publications',
-                            'sections': [
+                            'title': 'Sequence',
+                            'expectations': [
                                 {
-                                    'title': 'Publications in PubMed',
-                                    'expectations': [
-                                        {
-                                            'type': 'text',
-                                            'contains': [
-                                                'Sorry, nothing found for '
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            'label': 'Taxonomy',
-                            'sections': [
-                                {
-                                    'title': 'Lineage',
-                                    'expectations': [
-                                        {
-                                            'type': 'text',
-                                            'contains': [
-                                                'Taxonomy provided by this Object and linked to NCBI.'
-                                            ]
-                                        },
-                                        {
-                                            'type': 'rotated_table',
+                                    'type': 'rotated_table',
+                                    'data': [
+                                        ['Protein length', '385 aa'],
+                                        ['Protein translation', [{
+                                            'type': 'list',
                                             'data': [
-                                                ['Scientific Name', 'Prochlorococcus marinus str. AS9601']
+                                                'MEIICNQNELNNAIQLVSKAVASRPTHPILANILLTADEGTNKISVTGFD',
+                                                'LNLGIQTSFDGTVKNSGAITIPSKLLSEIVNKLPNETPVSLEVDENSDNI',
+                                                'LIKSDRGSFNLKGIPSDEYPNLPFVESGTSLNIEPSSFLKALKSTIFASS',
+                                                'NDDSKQLLTGVNFTFKPNYLESASTDGHRLAVALIGKEEQIENKENLSSN',
+                                                'VDDLSVTIPTRSLREIEKLVSLRSSENSIKLFYDKGQVVFISSNQIITTR',
+                                                'TLEGTYPNYSQLIPDSFSKIINFNTKKLIDSLERIAVLADQQSSVVKIKL',
+                                                'DDTDLASISADAQDIGNANESIPVSYSGENFDIAFNVRYLLEGLKVIASE',
+                                                'NVLLKCNIATTPAVFVPEDNLNSFTYLVMPVQVRS'
                                             ]
-                                        }
-                                    ]
-                                },
-                                {
-                                    'title': 'Species Tree',
-                                    'expectations': [
-                                        {
-                                            'type': 'text',
-                                            'contains': [
-                                                'A species tree was not found for this genome.'
+                                        }]],
+                                        ['CDS Length', '1,158 bp'],
+                                        ['CDS', [{
+                                            'type': 'list',
+                                            'data': [
+                                                'ATGGAAATTATTTGTAATCAAAATGAATTAAATAATGCTATACAACTAGT',
+                                                'AAGCAAGGCAGTTGCTTCAAGGCCAACGCATCCAATTCTTGCAAACATAC',
+                                                'TTTTAACAGCTGACGAAGGAACTAATAAAATTAGTGTCACAGGATTTGAC',
+                                                'TTAAATTTAGGAATTCAAACTTCTTTTGATGGAACTGTCAAAAATAGTGG',
+                                                'AGCTATCACTATACCCTCAAAACTTTTATCAGAAATAGTAAACAAACTAC',
+                                                'CTAATGAAACTCCTGTTTCTCTAGAAGTAGACGAAAATTCAGATAATATT',
+                                                'CTAATAAAAAGTGATAGAGGTTCTTTTAATCTAAAAGGGATACCCTCTGA',
+                                                'TGAATATCCTAATTTGCCATTTGTTGAAAGCGGTACTTCTTTGAATATTG',
+                                                'AGCCTAGTTCTTTTTTAAAGGCTTTAAAATCTACCATTTTTGCCAGTAGT',
+                                                'AATGATGATTCAAAGCAACTACTCACAGGTGTCAATTTTACTTTCAAACC',
+                                                'AAATTATTTAGAGTCTGCTTCTACAGATGGCCATAGATTGGCTGTTGCCT',
+                                                'TAATTGGTAAGGAAGAACAAATTGAAAATAAAGAAAACTTATCTTCAAAT',
+                                                'GTTGATGATTTATCGGTAACTATCCCAACTAGATCATTAAGAGAAATTGA',
+                                                'AAAACTAGTATCTTTGAGAAGCTCAGAAAATTCAATTAAGCTTTTCTATG',
+                                                'ACAAAGGTCAAGTAGTATTTATATCTTCTAATCAAATAATTACTACGAGA',
+                                                'ACTTTAGAAGGTACTTATCCTAATTATTCACAATTAATTCCTGATTCTTT',
+                                                'TTCTAAAATTATAAATTTTAATACAAAAAAATTAATTGATTCATTAGAAA',
+                                                'GAATTGCTGTTTTGGCAGATCAGCAAAGTAGTGTTGTAAAGATTAAATTA',
+                                                'GATGATACAGATTTAGCTTCAATCAGCGCAGATGCTCAAGATATTGGAAA',
+                                                'TGCAAATGAATCAATACCTGTTTCTTATTCAGGAGAAAATTTTGATATTG',
+                                                'CATTTAATGTAAGATATTTGTTAGAAGGTTTAAAAGTTATTGCCTCTGAA',
+                                                'AATGTACTTTTAAAGTGTAATATTGCAACTACTCCAGCTGTTTTTGTACC',
+                                                'AGAAGATAATCTCAATTCTTTTACGTATCTAGTTATGCCAGTGCAGGTTC',
+                                                'GTTCTTAA'
                                             ]
-                                        }
+                                        }]]
                                     ]
-                                }
-                            ]
-                        }, {
-                            'label': 'Assembly and Annotation',
-                            'sections': [
-                                {
-                                    'title': 'Contig Browser',
-                                    'expectations': [{
-                                        'type': 'text',
-                                        'contains': [
-                                            'Error loading contig browser: No contigs found on this genome'
-                                        ]
-                                    }]
-                                },
-                                {
-                                    'title': 'SEED Functions',
-                                    'expectations': [
-                                        # TODO: svg testing?
-                                    ]
-                                },
-                                {
-                                    'title': 'Gene Table',
-                                    'expectations': [{
-                                        'type': 'table',
-                                        'data': [
-                                            ['A9601_RS09110', 'NC_008816', '168', '+', '1158', 'gene',
-                                             'DNA polymerase III subunit beta'],
-                                        ]
-                                    }]
                                 }
                             ]
                         }

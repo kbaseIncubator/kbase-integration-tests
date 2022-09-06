@@ -114,7 +114,7 @@ class DataviewFBAModelTest(DataviewBase):
                         {
                             'label': 'Referenced by',
                             'expected': {
-                                'table': [
+                                'data_table': [
                                     [
                                         'fliu_test_report_9f6c322f-3421-4849-8cdd-70a96f176739',
                                         'Report',
@@ -127,9 +127,9 @@ class DataviewFBAModelTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'table': [
-
+                                'data_table': [
                                     [
+                                        None,
                                         'Empty',
                                         'Genome',
                                         'Aug 4, 2015',

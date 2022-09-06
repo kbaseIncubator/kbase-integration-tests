@@ -15,7 +15,7 @@ class DataviewPairdEndLibraryTest(DataviewBase):
                     'label': 'Data View',
                     'expectations': [
                         {
-                            'type': 'table',
+                            'type': 'rotated_table',
                             'data': [
                                 ['Left reads source file name', '235066e6-35d8-49e5-a7da-b012934835a6.inter.fastq.gz'],
                                 ['Sequencing technology', 'Illumina']
@@ -72,7 +72,18 @@ class DataviewPairdEndLibraryTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'no_data_message': 'This object does not reference any other data object.'
+                                'data_table': [
+                                    [
+                                        None, 'rhodo.art.q20.int.PE.reads', 'PairedEndLibrary',
+                                        'Oct 5, 2016',
+                                        'pranjan77'
+                                    ],
+                                    [
+                                        None, 'rhodobacter.art.q20.int.PE.reads', 'PairedEndLibrary',
+                                        'Oct 5, 2016',
+                                        'kbasetest'
+                                    ]
+                                ]
                             }
                         }
                     ]

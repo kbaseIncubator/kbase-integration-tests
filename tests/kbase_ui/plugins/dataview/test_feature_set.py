@@ -55,7 +55,7 @@ class DataviewFeatureSetTest(DataviewBase):
                         {
                             'label': 'Referenced by',
                             'expected': {
-                                'table': [
+                                'data_table': [
                                     [
                                         'kb_FeatureSetUtils_report_146eb944-af02-4eea-9fc1-f75e1da10e71',
                                         'Report',
@@ -68,14 +68,9 @@ class DataviewFeatureSetTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'table': [
+                                'data_table': [
                                     [
-                                        'Prochlorococcus_marinus_str._AS9601',
-                                        'Genome',
-                                        'Jun 6, 2022',
-                                        'kbaseuitest'
-                                    ],
-                                    [
+                                        None,
                                         'Prochlorococcus_marinus_str._AS9601',
                                         'Genome',
                                         'Jun 6, 2022',

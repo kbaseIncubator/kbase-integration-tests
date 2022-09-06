@@ -64,7 +64,16 @@ class DataviewSingleEndLibraryTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'no_data_message': 'This object does not reference any other data object.'
+                                'data_table': [
+                                    [
+                                        None, 'rhodo.art.q50.SE.reads', 'SingleEndLibrary', 'Oct 5, 2016',
+                                        'pranjan77'
+                                    ],
+                                    [
+                                        None, 'rhodobacter.art.q50.SE.reads', 'SingleEndLibrary',
+                                        'Oct 5, 2016', 'kbasetest'
+                                    ]
+                                ]
                             }
                         }
                     ]

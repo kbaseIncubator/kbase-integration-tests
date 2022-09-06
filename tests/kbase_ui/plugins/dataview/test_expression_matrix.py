@@ -81,12 +81,20 @@ class DataviewExpressionMatrixTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'table': [
+                                'data_table': [
                                     [
+                                        None,
                                         'Escherichia_coli_str_K-12_substr_MG1655_NCBI',
                                         'Genome',
                                         'Jul 29, 2015',
                                         'rsutormin'
+                                    ],
+                                    [
+                                        None,
+                                        'SomeFakeData',
+                                        'ExpressionMatrix',
+                                        'Aug 12, 2015',
+                                        'kbasetest'
                                     ]
                                 ]
                             }

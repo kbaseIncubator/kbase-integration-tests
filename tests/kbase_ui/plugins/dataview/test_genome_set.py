@@ -90,25 +90,35 @@ class DataviewGenomeSetTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'table': [
+                                'data_table': [
                                     [
+                                        None,
                                         'Rhodobacter_CACIA_14H1',
                                         'Genome',
                                         'Jan 15, 2015',
                                         'kbasetest'
                                     ],
                                     [
+                                        None,
                                         'Rhodobacter_sphaeroides_2.4.1',
                                         'Genome',
                                         'Jan 15, 2015',
                                         'kbasetest'
                                     ],
                                     [
+                                        None,
                                         'Rhodobacter_sphaeroides_2.4.1_KBase',
                                         'Genome',
                                         'Jan 15, 2015',
                                         'kbasetest'
                                     ],
+                                    [
+                                        None,
+                                        'Rhodobacter_external_genomes',
+                                        'GenomeSet',
+                                        'Jan 15, 2015',
+                                        'kbasetest'
+                                    ]
                                 ]
                             }
                         }

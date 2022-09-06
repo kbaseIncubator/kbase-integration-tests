@@ -5,6 +5,8 @@ class DataviewGenome2Test(DataviewBase):
     def test_authenticated_prochlorococcus_1(self):
         object_case = {
             'ref': '45593/13/1',
+            'sub': 'Feature',
+            'subid': 'A9601_RS09110',
             'name': 'prochloroccous_reannotated_with_prokka',
             'type': 'KBaseGenomes.Genome-17.0',
             'header': {
@@ -13,7 +15,45 @@ class DataviewGenome2Test(DataviewBase):
             'tabs': {
                 'dataview': {
                     'label': 'Data View',
-                    'tabs': []
+                    'sections': [
+                        {
+                            'title': 'Feature Overview',
+                            'expectations': [
+                                {
+                                    'type': 'rotated_table',
+                                    'data': [
+                                        ['Functions',
+                                         'Beta sliding clamp'],
+                                        ['Subsystems', 'No subsystem data'],
+                                        ['Annotation Comments', 'No annotation comments'],
+                                        ['Genome', 'Prochlorococcus marinus str. AS9601'],
+                                        ['Length', '1,158 bp, 385 aa'],
+                                        ['Location', '168 to 1,325 (+)'],
+                                        # Note that the table layout is transformed into tabs and newlines
+                                        # TODO: use table expectation
+                                        ['Aliases',
+                                         'protein_id\tWP_011817478.1\nEC_number\t2.7.7.7\nold_locus_tag\tA9601_00001\nlocus_tag\tA9601_RS09110'],
+                                        ['CDSs', 'A9601_RS09110_CDS_1']
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            'title': 'Sequence',
+                            'expectations': [
+                                {
+                                    'type': 'rotated_table',
+                                    'data': [
+                                        ['Protein length', '385 aa'],
+                                        ['Protein translation',
+                                         'MEIICNQNELNNAIQLVSKAVASRPTHPILANILLTADEGTNKISVTGFD\nLNLGIQTSFDGTVKNSGAITIPSKLLSEIVNKLPNETPVSLEVDENSDNI\nLIKSDRGSFNLKGIPSDEYPNLPFVESGTSLNIEPSSFLKALKSTIFASS\nNDDSKQLLTGVNFTFKPNYLESASTDGHRLAVALIGKEEQIENKENLSSN\nVDDLSVTIPTRSLREIEKLVSLRSSENSIKLFYDKGQVVFISSNQIITTR\nTLEGTYPNYSQLIPDSFSKIINFNTKKLIDSLERIAVLADQQSSVVKIKL\nDDTDLASISADAQDIGNANESIPVSYSGENFDIAFNVRYLLEGLKVIASE\nNVLLKCNIATTPAVFVPEDNLNSFTYLVMPVQVRS'],
+                                        ['Feature Length', '1,158 bp'],
+                                        ['Feature',
+                                         'ATGGAAATTATTTGTAATCAAAATGAATTAAATAATGCTATACAACTAGT\nAAGCAAGGCAGTTGCTTCAAGGCCAACGCATCCAATTCTTGCAAACATAC\nTTTTAACAGCTGACGAAGGAACTAATAAAATTAGTGTCACAGGATTTGAC\nTTAAATTTAGGAATTCAAACTTCTTTTGATGGAACTGTCAAAAATAGTGG\nAGCTATCACTATACCCTCAAAACTTTTATCAGAAATAGTAAACAAACTAC\nCTAATGAAACTCCTGTTTCTCTAGAAGTAGACGAAAATTCAGATAATATT\nCTAATAAAAAGTGATAGAGGTTCTTTTAATCTAAAAGGGATACCCTCTGA\nTGAATATCCTAATTTGCCATTTGTTGAAAGCGGTACTTCTTTGAATATTG\nAGCCTAGTTCTTTTTTAAAGGCTTTAAAATCTACCATTTTTGCCAGTAGT\nAATGATGATTCAAAGCAACTACTCACAGGTGTCAATTTTACTTTCAAACC\nAAATTATTTAGAGTCTGCTTCTACAGATGGCCATAGATTGGCTGTTGCCT\nTAATTGGTAAGGAAGAACAAATTGAAAATAAAGAAAACTTATCTTCAAAT\nGTTGATGATTTATCGGTAACTATCCCAACTAGATCATTAAGAGAAATTGA\nAAAACTAGTATCTTTGAGAAGCTCAGAAAATTCAATTAAGCTTTTCTATG\nACAAAGGTCAAGTAGTATTTATATCTTCTAATCAAATAATTACTACGAGA\nACTTTAGAAGGTACTTATCCTAATTATTCACAATTAATTCCTGATTCTTT\nTTCTAAAATTATAAATTTTAATACAAAAAAATTAATTGATTCATTAGAAA\nGAATTGCTGTTTTGGCAGATCAGCAAAGTAGTGTTGTAAAGATTAAATTA\nGATGATACAGATTTAGCTTCAATCAGCGCAGATGCTCAAGATATTGGAAA\nTGCAAATGAATCAATACCTGTTTCTTATTCAGGAGAAAATTTTGATATTG\nCATTTAATGTAAGATATTTGTTAGAAGGTTTAAAAGTTATTGCCTCTGAA\nAATGTACTTTTAAAGTGTAATATTGCAACTACTCCAGCTGTTTTTGTACC\nAGAAGATAATCTCAATTCTTTTACGTATCTAGTTATGCCAGTGCAGGTTC\nGTTCTTAA']]
+                                }
+                            ]
+                        }
+                    ]
                 },
                 'overview': {
                     'name': 'overview',

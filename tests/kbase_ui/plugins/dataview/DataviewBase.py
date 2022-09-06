@@ -43,31 +43,40 @@ class DataviewBase(PluginBase):
             # Row is parent
             row = self.get_parent(label)
 
-            print('row??', row.get_attribute('innerText'))
-
             # Don't want to do this, but for some reason can't locate the value cell
             # via the combined text across text and dom node children.
-            # print('hmm', label, row)
             value_cell = row.find_element(By.XPATH, './td')
 
-            value_cell_content = value_cell.get_attribute('innerText')
+            if isinstance(expected_value, list):
+                self.common_expectations(expected_value, value_cell)
+            else:
+                value_cell_content = value_cell.get_attribute('innerText')
+                self.assertEqual(value_cell_content, expected_value)
 
-            self.assertEqual(value_cell_content, expected_value)
+    def assert_lines(self, start_from, data):
+        # get the list container
 
-    def assert_data_table(self, start_from, table_data):
-        print('[assert_data_table]', start_from.text)
-        # print('assert_data_table', start_from, table_data)
-        # print('assert_data_table 0')
-        # for row_number, column_data in enumerate(table_data):
-        #     print('assert_data_table 1', row_number, column_data)
-        #     for column_number, column_value in enumerate(column_data):
-        #         xpath = f'.//*[@role="table"]//*[@role="row"][position()={row_number + 1}]//[@role="cell"][position()={column_number + 1}]'
-        #         print('assert_data_table 2', column_number, column_value, xpath)
-        #         cell = start_from.find_element(By.XPATH, xpath)
-        # cell_content = cell.get_attribute('innerText')
-        # print('cell content', cell, cell.get_attribute('innerHTML'), cell.get_attribute('outerHTML'),
-        #       cell.get_attribute('outerText'), cell_content)
-        # self.assertRegex(cell_content, column_value)
+        container = start_from.find_element(By.XPATH, './*[@role="list"]')
+
+        # iterate through data and lines w/in container.
+        for index, line in enumerate(data):
+            line_element = container.find_element(By.XPATH, f'./*[@role="listitem"][{index + 1}]')
+            self.assertEqual(line_element.text, line)
+
+    # def assert_data_table(self, start_from, table_data):
+    #     print('[assert_data_table]', start_from.text)
+    #     # print('assert_data_table', start_from, table_data)
+    #     # print('assert_data_table 0')
+    #     # for row_number, column_data in enumerate(table_data):
+    #     #     print('assert_data_table 1', row_number, column_data)
+    #     #     for column_number, column_value in enumerate(column_data):
+    #     #         xpath = f'.//*[@role="table"]//*[@role="row"][position()={row_number + 1}]//[@role="cell"][position()={column_number + 1}]'
+    #     #         print('assert_data_table 2', column_number, column_value, xpath)
+    #     #         cell = start_from.find_element(By.XPATH, xpath)
+    #     # cell_content = cell.get_attribute('innerText')
+    #     # print('cell content', cell, cell.get_attribute('innerHTML'), cell.get_attribute('outerHTML'),
+    #     #       cell.get_attribute('outerText'), cell_content)
+    #     # self.assertRegex(cell_content, column_value)
 
     def dataview_overview_table(self, cases):
         # Find the summary area, the table should be located within the same
@@ -79,20 +88,6 @@ class DataviewBase(PluginBase):
         summary_container = self.get_parent(header)
 
         self.assert_rotated_table(summary_container, cases)
-
-        # for row_number, [label, value] in enumerate(cases):
-        #     # Find label
-        #     label = self.find_element_with_text(label, start_from=summary_container)
-        #
-        #     # Row is parent
-        #     row = self.get_parent(label)
-        #
-        #     # Don't want to do this, but for some reason can't locate the value cell
-        #     # via the combined text across text and dom node children.
-        #     # print('hmm', label, row)
-        #     value_cell = row.find_element(By.XPATH, './td')
-        #
-        #     self.assertEqual(value_cell.text, value)
 
     def open_overview_panel(self, label):
         panel_header = self.find_element_with_text(label)
@@ -126,11 +121,10 @@ class DataviewBase(PluginBase):
 
         # The panel toggle button
         panel_button = f'{panel_header}/h4/span'
-        # print('overview_panel 1')
+
         self.wait_for_text_xpath(panel_button, label)
-        # print('overview_panel 2')
+
         self.click(panel_button)
-        # print('overview_panel 3')
 
         # Pause for the tab animation to complete
         time.sleep(FUDGE_FACTOR)
@@ -138,8 +132,6 @@ class DataviewBase(PluginBase):
         # The panel body (row 2, wrapped in a div)
         panel_body = f'{panel}/div[2]/div'
         self.wait_for_visibility_xpath(panel_body)
-
-        # print('overview_panel 4')
 
         # Our assertion within the panel body
         return panel_body
@@ -155,17 +147,19 @@ class DataviewBase(PluginBase):
 
         # The panel toggle button
         panel_button = f'{panel_header}/h4/span'
-        # print('close_panel 1')
+
         self.wait_for_text_xpath(panel_button, label)
-        # print('close_panel 2')
+
         self.click(panel_button)
-        # print('close_panel 3')
 
     def dataview_navigate(self, object_case):
-        self.login_navigate(f'dataview/{object_case["ref"]}')
 
-        # Make sure the default title appears
-        self.assert_title(f'Data View for {object_case["name"]}')
+        if 'sub' in object_case:
+            self.login_navigate(f'dataview/{object_case["ref"]}?sub={object_case["sub"]}&subid={object_case["subid"]}')
+        else:
+            self.login_navigate(f'dataview/{object_case["ref"]}')
+            # Make sure the default title appears
+            self.assert_title(f'Data View for {object_case["name"]}')
 
         self.switch_to_iframe()
 
@@ -200,7 +194,6 @@ class DataviewBase(PluginBase):
         ######
         def metadata_panel(case):
             panel = self.open_overview_panel(case['label'])
-            print('panel???', panel.get_attribute('innerText'))
             if 'no_data_message' in case['expected']:
                 self.find_by_text(case['expected']['no_data_message'], start_from=panel)
             else:
@@ -224,8 +217,10 @@ class DataviewBase(PluginBase):
             panel = self.open_overview_panel(case['label'])
             if 'no_data_message' in case['expected']:
                 self.find_by_text(case['expected']['no_data_message'], start_from=panel)
+            elif 'data_table' in case['expected']:
+                self.assert_data_table(panel, case['expected']['data_table'])
             else:
-                self.assert_table(panel, case['expected']['table'])
+                raise ValueError(f'Invalid referenced_by panel case: {list(case["expected"].keys())[0]}')
 
         referenced_by_panel(overview_case['panels'][3])
 
@@ -236,19 +231,24 @@ class DataviewBase(PluginBase):
             panel = self.open_overview_panel(case['label'])
             if 'no_data_message' in case['expected']:
                 self.find_by_text(case['expected']['no_data_message'], start_from=panel)
+            elif 'data_table' in case['expected']:
+                self.assert_data_table(panel, case['expected']['data_table'])
             else:
-                self.assert_table(panel, case['expected']['table'])
+                raise ValueError(f'Invalid referenced_by panel case: {list(case["expected"].keys())[0]}')
 
         references_panel(overview_case['panels'][4])
 
     def common_expectations(self, expectations, start_from=None):
         for expectation in expectations:
+            # print("***** EXPECTATION *****", expectation, expectations)
             if expectation['type'] == 'rotated_table':
                 self.assert_rotated_table(start_from, expectation['data'])
             elif expectation['type'] == 'table':
                 self.assert_table(start_from, expectation['data'])
             elif expectation['type'] == 'data-table':
                 self.assert_data_table(start_from, expectation['data'])
+            elif expectation['type'] == 'lines':
+                self.assert_lines(start_from, expectation['data'])
             elif expectation['type'] == 'text':
                 if 'contains' in expectation:
                     for expected_text in expectation['contains']:
@@ -258,26 +258,13 @@ class DataviewBase(PluginBase):
         dataview_case = object_case['tabs']['dataview']
         tab_label = self.dataview_click_tab_by_label(dataview_case['label'])
         tabset = tab_label.find_element(By.XPATH, './ancestor::*[@role="tablist"]')
-
-        # self.dataview_click_tab('main')
-        # dataview_tab_pane = f'//*[@data-k-b-testhook-tabpane="main"]'
-
-        # def select_tabx(tab_number, click=True):
-        #     case = dataview_case['tabs'][tab_number - 1]
-        #     tab = f'{dataview_tab_pane}//ul[@class="nav nav-tabs"]/li[{tab_number}]'
-        #     self.wait_for_text_xpath(tab, case['title'])
-        #     if click:
-        #         tab_button = f'{tab}/a'
-        #         self.click(tab_button)
-        #     tab_pane = f'{dataview_tab_pane}//div[@class="tab-content"]/div[{tab_number}]'
-        #     return [case, tab_pane]
+        tab_pane = tabset.find_element(By.XPATH, './*[@role="tabpane"]')
 
         def select_tab(tab_label, case, start_from=None, click=True):
             return self.dataview_click_tab_by_label(case['label'])
 
         def select_panel(panel_number):
             panel_title = self.find_element_with_text(case['label'])
-            print('title', panel_title, panel_title.get_attribute('class'))
             panel = panel_title.find_element(By.XPATH, './ancestor::*[contains(@class,"panel")]')
             return panel
             # panel = f'{dataview_tab_pane}//div[@data-element="panel"]/div[{panel_number}]'
@@ -297,12 +284,22 @@ class DataviewBase(PluginBase):
                 case = dataview_case['panels'][panel_number - 1]
                 panel = select_panel(case)
                 self.common_expectations(case['expectations'], start_from=panel)
-        # elif 'expectations' in dataview_case:
-        #     common_expectations(dataview_tab_pane, dataview_case['expectations'])
+        elif 'sections' in dataview_case:
+            for section_case in dataview_case['sections']:
+                section_heading = self.find_element_with_text(section_case['title'])
+                section_body = section_heading.find_element(By.XPATH, './ancestor::section')
+                self.common_expectations(section_case['expectations'], start_from=section_body)
         elif 'not_supported' in dataview_case:
             message = 'This object does not have a specific visualization'
             self.find_element_with_text(message, start_from=tabset)
-            # self.wait_for_text_xpath(tabset, message)
+        elif 'expectations' in dataview_case:
+            expectations = dataview_case['expectations']
+            if expectations is None:
+                pass
+            else:
+                self.common_expectations(expectations, tab_pane)
+        else:
+            raise ValueError(f'Missing data case in "Data View" tab')
 
     def auth_blocked_plugin(self, plugin_path):
         self.navigate(plugin_path)

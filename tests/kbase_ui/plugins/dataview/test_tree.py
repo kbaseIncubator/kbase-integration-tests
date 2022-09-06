@@ -13,7 +13,9 @@ class DataviewTreeTest(DataviewBase):
             'tabs': {
                 'dataview': {
                     'label': 'Data View',
-                    'expectations': []
+                    # TODO: even if testing for the tree graph is not easy,
+                    # it is easy to test for existence of it.
+                    'expectations': None
                 },
                 'overview': {
                     'label': 'Object Overview',
@@ -55,7 +57,7 @@ class DataviewTreeTest(DataviewBase):
                         {
                             'label': 'Referenced by',
                             'expected': {
-                                'table': [
+                                'data_table': [
                                     [
                                         'blast_report_7be48b21-c85e-40ba-b909-dd16854d7429',
                                         'Report',
@@ -68,8 +70,9 @@ class DataviewTreeTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'table': [
+                                'data_table': [
                                     [
+                                        None,
                                         'test_Tree-MUSCLE.MSA',
                                         'MSA',
                                         'Jun 6, 2022',

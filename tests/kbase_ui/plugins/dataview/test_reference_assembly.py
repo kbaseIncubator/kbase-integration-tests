@@ -75,7 +75,12 @@ class DataviewReferenceAssemblyTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'no_data_message': 'This object does not reference any other data object.'
+                                'data_table': [
+                                    [
+                                        None, 'rhodobacter_CACIA14H1.reference', 'ReferenceAssembly',
+                                        'Feb 6, 2015', 'kbasetest'
+                                    ]
+                                ]
                             }
                         }
                     ]

@@ -79,7 +79,10 @@ class DataviewContigSetTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'no_data_message': 'This object does not reference any other data object.'
+                                'data_table': [
+                                    [None, 'Rhodobacter_CACIA_14H1_contigs', 'ContigSet', 'Feb 6, 2015',
+                                     'kbasetest']
+                                ]
                             }
                         }
                     ]

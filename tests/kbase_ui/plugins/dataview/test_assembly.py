@@ -100,7 +100,9 @@ class DataviewAssemblyTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'no_data_message': 'This object does not reference any other data object.'
+                                'data_table': [
+                                    [None, 'GCF_001223685.1_assembly', 'Assembly', 'May 20, 2018', 'qzhang']
+                                ]
                             }
                         }
                     ]

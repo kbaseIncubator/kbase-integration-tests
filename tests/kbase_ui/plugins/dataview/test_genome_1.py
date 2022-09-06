@@ -60,8 +60,14 @@ class DataviewGenomeTest(DataviewBase):
                                         {
                                             'type': 'data-table',
                                             'data': [
-                                                ['Microorganisms', 'Wang H, Sha X, Li R, Li Y, Khaleque HN',
-                                                 'Comparative Genome Analysis Provides Molecular Evidence for Reclassification']
+                                                ['Environmental research',
+                                                 'Jawaharraj K, Sigdel P, Gu Z, Muthusamy G, Sani R, Gadhamshetty V',
+                                                 'Photosynthetic microbial fuel cells for methanol treatment using graphene electrodes.',
+                                                 '2022'],
+
+                                                ['Microorganisms',
+                                                 'Wang H, Sha X, Li R, Li Y, Khaleque HN, Zhang Y, Bohu T, Bai Z, Zhuang X',
+                                                 'Comparative Genome Analysis Provides Molecular Evidence for Reclassification of the Photosynthetic Bacterium Rhodobacter sphaeroides EBL0706 as a Strain of Luteovulum azotoformans.']
                                             ]
                                         }
                                     ]
@@ -175,9 +181,16 @@ class DataviewGenomeTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'table': [[
+                                'data_table': [[
+                                    None,
                                     'Rhodobacter_sphaeroides_2.4.1.contigset',
                                     'ContigSet',
+                                    'Jan 15, 2015',
+                                    'kbasetest'
+                                ], [
+                                    None,
+                                    'Rhodobacter_sphaeroides_2.4.1',
+                                    'Genome',
                                     'Jan 15, 2015',
                                     'kbasetest'
                                 ]]

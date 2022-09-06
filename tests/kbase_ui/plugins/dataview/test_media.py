@@ -116,7 +116,11 @@ class DataviewMediaTest(DataviewBase):
                         {
                             'label': 'References',
                             'expected': {
-                                'no_data_message': 'This object does not reference any other data object.'
+                                'data_table': [
+                                    [
+                                        None, 'Rsp-minimal', 'Media', 'Feb 6, 2015', 'kbasetest'
+                                    ]
+                                ]
                             }
                         }
                     ]

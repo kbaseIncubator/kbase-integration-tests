@@ -8,7 +8,7 @@ Tests are run on your host machine, against an instance of a KBase user interfac
 
 This project uses [poetry](./docs/using-poetry.md) to manage and install dependencies.
 
-In order to use this project you will need [poetry](https://python-poetry.org/docs/), which itself requires Python. Installation of such is not currently covered by this project.
+In order to use this project you will need [poetry](https://python-poetry.org/docs/), which itself requires Python. Installation of poetry is not currently covered by this project.
 
 From the repo root:
 
@@ -36,7 +36,7 @@ This will run the tests against `https://ci.kbase.us`. If you are not running a 
 For repeated test runs, it is recommended to export environment variables one time.
 
 ```shell
- export PYTHONPATH="$PWD" 
+ export PYTHONPATH="$PWD" expo
  export KBASE_TOKEN=<KBaseToken> 
   ```
  
@@ -84,7 +84,7 @@ BROWSER=firefox HEADLESS=f poetry run pytest ./tests/plugins/test_feeds.py
 
 ### GitHub Token
 
-If you run tests repeatedly, you may begin to have test failures due to GitHub rate limiting. The tests rely upon  [`webdriver_manager`](https://github.com/SergeyPirogov/webdriver_manager), which eases the process of test configuration by automatically downloading the latest browser for the current platform. It downloads them from the browsers from their published locations, which is predominantly, if not wholly, GitHub. GitHub rate-limits public downloads. The rate is approximately 60/hour, but it may vary and GitHub does not promise this. In any case, to get around this, a GitHub Token must be used. For a developer, this means creating a Personal Access Token (PAT) from their GitHub account. The PAT just needs to have `public_repo` scope.
+If you run tests repeatedly, you may begin to have test failures due to GitHub rate limiting. The tests rely upon  [`webdriver_manager`](https://github.com/SergeyPirogov/webdriver_manager), which eases the process of test configuration by automatically downloading the latest browser for the current platform. It downloads them from the browsers from their published locations, which is predominantly, if not wholly, GitHub. GitHub rate-limits public downloads. The rate is approximately 60/hour, but it may vary and GitHub does make any promises about the rate limit. To get around this limitation and potential for aggravation, a GitHub Token may be used. For a developer, this means creating a Personal Access Token (PAT) from their GitHub account. The PAT just needs to have `public_repo` scope.
 
 
  ## Running tests from a container
