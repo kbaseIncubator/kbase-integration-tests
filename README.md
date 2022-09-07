@@ -87,6 +87,26 @@ BROWSER=firefox HEADLESS=f poetry run pytest ./tests/plugins/test_feeds.py
 If you run tests repeatedly, you may begin to have test failures due to GitHub rate limiting. The tests rely upon  [`webdriver_manager`](https://github.com/SergeyPirogov/webdriver_manager), which eases the process of test configuration by automatically downloading the latest browser for the current platform. It downloads them from the browsers from their published locations, which is predominantly, if not wholly, GitHub. GitHub rate-limits public downloads. The rate is approximately 60/hour, but it may vary and GitHub does make any promises about the rate limit. To get around this limitation and potential for aggravation, a GitHub Token may be used. For a developer, this means creating a Personal Access Token (PAT) from their GitHub account. The PAT just needs to have `public_repo` scope.
 
 
+## Running against local or remote 
+
+When working on adding, updating, or fixing tests it is most efficacious to run the tests against a local instance of the interface being evaluated.
+
+For kbase-ui this is quite natural, as kbase-ui development includes a proxy to any KBase deployment environment, including proxying all other KBase user interfaces.
+
+When tests are not under development, and are being used to verify kbase-ui or other another interface prior to release, tests should be run against the remote. I would recommend running the tests against a deployment of the pre-release image, and also after the release image is built. This is especially useful if the tests have been updated for new features, and would fail if run against the previous version of the interface.
+
+## Instability of test targets
+
+Integration tests rely up on user interfaces being populated data outside of their control. Data sources include KBase services, e.g. workspace, and third party services, e.g. pubmed. These data source are not static, and therefore, on occasion tests will fail for no good reason other than that data having changed. In such circumstances, the data should be investigated, resulting most likely in changes to test data to get tests passing again. When one does this, please take care to visually verify the data changes in situ.
+
+For example, pubmed records may be changed. In one instance the publications table for the Genome landing page broke when an author name was modified. This was for a relatively recent publication (within the last year), but this does indicate that these records are not considered immutable once published.
+
+### Workspace data
+
+All workspace data should be owned by the test user, `kbaseuitest`, and only shared with other test user accounts.
+
+
+
  ## Running tests from a container
  
 It is almost always preferable these days to run code like these tests from inside a Docker container. This provides the optimal isolation, reproducibility, and is easier on developers and for us to support.

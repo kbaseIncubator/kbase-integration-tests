@@ -61,7 +61,7 @@ class DataviewGenomeTest(DataviewBase):
                                             'type': 'data-table',
                                             'data': [
                                                 ['Environmental research',
-                                                 'Jawaharraj K, Sigdel P, Gu Z, Muthusamy G, Sani R, Gadhamshetty V',
+                                                 'Jawaharraj K, Sigdel P, Gu Z, Muthusamy G, Sani RK, Gadhamshetty V',
                                                  'Photosynthetic microbial fuel cells for methanol treatment using graphene electrodes.',
                                                  '2022'],
 
