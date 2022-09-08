@@ -37,5 +37,5 @@ class AuthTest(PluginBase):
 
         globus_sign_out_link = self.find_element_with_text('Log out from Globus', xpath='//*[@role="link"]',
                                                            include_descendents=True)
-        self.assertEqual(globus_sign_out_link.get_dom_attribute('href'), 'https://www.globus.org/app/logout')
+        self.assertEqual(globus_sign_out_link.get_dom_attribute('href'), 'https://app.globus.org/logout')
         self.assertEqual(globus_sign_out_link.get_dom_attribute('target'), '_blank')
