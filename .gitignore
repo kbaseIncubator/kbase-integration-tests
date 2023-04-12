@@ -3,3 +3,4 @@
 .venv
 NOTES.txt
 geckodriver.log
+__pycache__

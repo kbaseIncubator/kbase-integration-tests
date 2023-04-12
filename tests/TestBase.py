@@ -14,7 +14,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
-from tests.kbase_ui.expected_conditions import element_attribute_has_value, element_attribute_is_value
+from tests.kbase_ui.expected_conditions import (element_attribute_has_value,
+                                                element_attribute_is_value)
 
 DEFAULT_TIMEOUT = 10  # seconds
 
@@ -284,6 +285,11 @@ class TestBase(unittest.TestCase):
             return start_from.find_element(By.XPATH, f"{xpath}[{text_operator}='{text}']")
         else:
             return start_from.find_element(By.XPATH, f'{xpath}[{text_operator}="{text}"]')
+        
+    def find_element_with_this_and_that(self, this, that, start_from=None, include_descendents=True):
+        this_el = self.find_element_with_text(this, start_from=start_from, include_descendents=include_descendents)
+        parent_el = self.get_parent(this_el)
+        return self.find_element_with_text(that, start_from=parent_el, include_descendents=include_descendents)
 
     def find_header_with_text(self, text):
         return self.find_element_with_text(text, xpath='//*[@role="heading"][@aria-level="1"]')

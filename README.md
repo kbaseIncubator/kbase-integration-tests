@@ -32,14 +32,14 @@ Note that currently the test data is owned by the user `kbaseuitest` and is not 
 This will run the tests against `https://ci.kbase.us`. If you are not running a local copy of kbase-ui with `ci.kbase.us` proxied to it, the tests will run against our `ci` runtime.
 
 ### Fine tuning
- 
+
 For repeated test runs, it is recommended to export environment variables one time.
 
 ```shell
  export PYTHONPATH="$PWD" expo
  export KBASE_TOKEN=<KBaseToken> 
   ```
- 
+
 then to run tests separately
 
 ```shell
@@ -49,7 +49,7 @@ then to run tests separately
 To focus tests you may simply narrow the scope for discovery, even down to the individual file. E.g.
 
 this will run just the dataview plugin tests:
- 
+
 ```shell
  poetry run pytest ./tests/plugins/dataview
 ```
@@ -105,11 +105,9 @@ For example, pubmed records may be changed. In one instance the publications tab
 
 All workspace data should be owned by the test user, `kbaseuitest`, and only shared with other test user accounts.
 
+## Running tesAts from a container
 
-
- ## Running tests from a container
- 
-It is almost always preferable these days to run code like these tests from inside a Docker container. This provides the optimal isolation, reproducibility, and is easier on developers and for us to support.
+It is  preferable to run code like these tests from inside a Docker container. This provides the optimal isolation, reproducibility, and is easier on developers and for us to support.
 
 However, experiments so far are not encouraging. The primary problem seems to be the reliability of browsers available within a container. I suspect that once we solve the problem of reliably using headless browsers inside a container this will be the preferred or at least default way to run tests.
 
@@ -122,7 +120,7 @@ Here is how I can begin to get tests running in a container. So far, I've manage
     ```shell
     docker compose run tests  
     ```
-    
+
     Currently, the container just starts `bash`, to ease the manual process described here.
 
 2. From inside container, get the ip of the internal network which is that of the host
@@ -130,17 +128,20 @@ Here is how I can begin to get tests running in a container. So far, I've manage
    ```shell
    python tools/hostname-ip.py host.docker.internal
    ```
-   
+
 3. then add this to /etc/hosts
 
    ```shell
    apt-get install vim
    vi /etc/hosts
    ```
+
    and add the line
+
    ```text
    IP_ADDRESS ci.kbase.us
    ```
+
    where `IP_ADDRESS` was the address returned from step 2.
 
 ## Running against a testing service

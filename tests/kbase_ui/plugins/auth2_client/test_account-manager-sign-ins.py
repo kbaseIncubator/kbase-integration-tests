@@ -24,6 +24,7 @@ class AccountTest(Auth2ClientBase):
         ], row_count=1, start_from=current_panel)
 
         # the other sessions panel
+        # note that the test account should not have any other sign-in sessions!
         other_panel = self.find_panel('Other Sign-In Sessions')
         self.find_element_containing_text('You do not have any additional active sign-in sessions.',
                                           start_from=other_panel)
