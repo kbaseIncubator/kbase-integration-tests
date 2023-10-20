@@ -20,5 +20,5 @@ class SamplesTest(PluginBase):
         self.switch_to_iframe()
 
         error_message_xpath = '//*[@class="ant-result-subtitle"]'
-        error_message = 'Sample service error code 20000 Unauthorized: Anonymous users cannot read sample 1e476e13-20be-4133-bf8a-6a5681423070';
+        error_message = 'Sample service error code 20000 Unauthorized: Anonymous users cannot read sample 1e476e13-20be-4133-bf8a-6a5681423070'
         self.wait_for_text_xpath(error_message_xpath, error_message)

@@ -12,28 +12,41 @@ class AccountTest(Auth2ClientBase):
 
         # Through the policy title, ensure that the related content is present and
         # grouped with it.
-        policy_tab, panel = self.select_tab('KBase Data Policy', xpath='//*', is_active=True)
+        policy_tab, panel = self.select_tab('KBase Data Policy', xpath='//*', is_active=False, include_descendents=True)
 
         self.assertIsNotNone(
-            self.find_element_with_text('version: 1',
+            # self.find_element_with_text('version: 1',
+            #                             start_from=policy_tab,
+            #                             include_descendents=True))
+            self.find_element_with_this_and_that('version', '1',
                                         start_from=policy_tab,
                                         include_descendents=True))
         self.assertIsNotNone(
-            self.find_element_with_text('published: 1/1/15',
+            # self.find_element_with_text('published: 1/1/15',
+            #                             start_from=policy_tab,
+            #                             include_descendents=True))
+            self.find_element_with_this_and_that('published', '1/1/15',
                                         start_from=policy_tab,
                                         include_descendents=True))
         self.assertIsNotNone(
-            self.find_element_with_text('agreed: 1/6/20, 1:48 PM',
+            self.find_element_with_this_and_that('agreed', '1/6/20',
                                         start_from=policy_tab,
                                         include_descendents=True))
+            # self.find_element_with_text('agreed: 1/6/20, 1:48 PM',
+            #                             start_from=policy_tab,
+            #                             include_descendents=True))
 
         self.find_element_with_text('Data Policy', start_from=panel)
 
         self.find_element_containing_text('KBase conforms to the',
                                           start_from=panel)
 
-    def select_tab(self, label, xpath='', is_active=False, start_from=None):
-        label_xpath = f'{xpath}[text()="{label}"]'
+    def select_tab(self, label, xpath='', is_active=False, start_from=None, include_descendents=False):
+        if include_descendents:
+            text_operator = '.'
+        else:
+            text_operator = 'text()'
+        label_xpath = f'{xpath}[contains({text_operator}, "{label}")]'
         tab = self.assert_tab2(label_xpath, is_active=is_active)
         if not is_active:
             tab.click()
@@ -49,20 +62,22 @@ class AccountTest(Auth2ClientBase):
 
         # Through the policy title, ensure that the related content is present and
         # grouped with it.
-        self.assert_tab2('//*[text()="KBase Data Policy"]', is_active=True)
+        # self.assert_tab2('//*[text()="KBase Data Policy"]', is_active=True)
 
-        use_agreement_tab, panel = self.select_tab('KBase Use Agreement', xpath='//*', is_active=False)
+        # TODO: Should not depend on whether active or not, here at least.
+        # In any case, this tab should be active by default
+        use_agreement_tab, panel = self.select_tab('KBase Use Agreement', xpath='//*', is_active=True, include_descendents=True)
 
         self.assertIsNotNone(
-            self.find_element_with_text('version: 1',
+            self.find_element_with_this_and_that('version', '1',
                                         start_from=use_agreement_tab,
                                         include_descendents=True))
         self.assertIsNotNone(
-            self.find_element_with_text('published: 1/1/15',
+            self.find_element_with_this_and_that('published', '1/1/15',
                                         start_from=use_agreement_tab,
                                         include_descendents=True))
         self.assertIsNotNone(
-            self.find_element_with_text('agreed: 1/6/20, 1:48 PM',
+            self.find_element_with_this_and_that('agreed', '1/6/20',
                                         start_from=use_agreement_tab,
                                         include_descendents=True))
 

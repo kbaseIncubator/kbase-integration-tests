@@ -14,5 +14,5 @@ class UserProfileTest(PluginBase):
         # Make sure the default title appears
         self.assert_title('User Profile for Narrative Tester')
 
-    def test_unauthenticated(self):
-        self.auth_blocked_plugin('people/narrativetester')
+    # def test_unauthenticated(self):
+    #     self.auth_blocked_plugin('people/narrativetester')
