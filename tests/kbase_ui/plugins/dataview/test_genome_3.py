@@ -106,7 +106,7 @@ class DataviewGenome3Test(DataviewBase):
                                     'expectations': [{
                                         'type': 'text',
                                         'contains': [
-                                            'Error loading contig browser: No contigs found on this genome'
+                                            'Click on a feature to view details'
                                         ]
                                     }]
                                 },

@@ -1,10 +1,10 @@
 # KBase Integration Tests
 
-Run integration tests against KBase user interfaces with Python. Tests currently support kbase-ui, kbase-ui plugins, a bit of Narratives Navigator. 
+Run integration tests against KBase user interfaces with Python. Tests currently support kbase-ui, kbase-ui plugins, a bit of Narratives Navigator.
 
 ## Quick Start
 
-Tests are run on your host machine, against an instance of a KBase user interface running locally or remotely. 
+Tests are run on your host machine, against an instance of a KBase user interface running locally or remotely.
 
 This project uses [poetry](./docs/using-poetry.md) to manage and install dependencies.
 
@@ -21,7 +21,7 @@ then
 ```shell
  PYTHONPATH="$PWD" KBASE_TOKEN=<KBaseToken> poetry run pytest ./tests
  ```
- 
+
 where:
 
 - `PYTHONPATH` should be set to repo root directory
@@ -36,7 +36,7 @@ This will run the tests against `https://ci.kbase.us`. If you are not running a 
 For repeated test runs, it is recommended to export environment variables one time.
 
 ```shell
- export PYTHONPATH="$PWD" expo
+ export PYTHONPATH="$PWD"
  export KBASE_TOKEN=<KBaseToken> 
   ```
 
@@ -73,21 +73,20 @@ or this will run just the feeds plugin tests:
 For example, it is common when debugging tests to run non-headless:
 
 ```shell
-HEADLESS=f poetry run pytest ./tests/plugins/test_feeds.py
+HEADLESS=f poetry run pytest ./tests/kbase_ui/plugins/test_feeds.py
 ```
 
 or to run in a different browser, for perspective:
 
 ```shell
-BROWSER=firefox HEADLESS=f poetry run pytest ./tests/plugins/test_feeds.py
+BROWSER=firefox HEADLESS=f poetry run pytest ./tests/kbase_ui/plugins/test_feeds.py
 ```
 
 ### GitHub Token
 
 If you run tests repeatedly, you may begin to have test failures due to GitHub rate limiting. The tests rely upon  [`webdriver_manager`](https://github.com/SergeyPirogov/webdriver_manager), which eases the process of test configuration by automatically downloading the latest browser for the current platform. It downloads them from the browsers from their published locations, which is predominantly, if not wholly, GitHub. GitHub rate-limits public downloads. The rate is approximately 60/hour, but it may vary and GitHub does make any promises about the rate limit. To get around this limitation and potential for aggravation, a GitHub Token may be used. For a developer, this means creating a Personal Access Token (PAT) from their GitHub account. The PAT just needs to have `public_repo` scope.
 
-
-## Running against local or remote 
+## Running against local or remote
 
 When working on adding, updating, or fixing tests it is most efficacious to run the tests against a local instance of the interface being evaluated.
 
@@ -107,7 +106,7 @@ All workspace data should be owned by the test user, `kbaseuitest`, and only sha
 
 ## Running tesAts from a container
 
-It is  preferable to run code like these tests from inside a Docker container. This provides the optimal isolation, reproducibility, and is easier on developers and for us to support.
+It is preferable to run code like these tests from inside a Docker container. This provides the optimal isolation, reproducibility, and is easier on developers and for us to support.
 
 However, experiments so far are not encouraging. The primary problem seems to be the reliability of browsers available within a container. I suspect that once we solve the problem of reliably using headless browsers inside a container this will be the preferred or at least default way to run tests.
 
@@ -149,4 +148,3 @@ Here is how I can begin to get tests running in a container. So far, I've manage
 In order to perform cross-browser, cross-browser-version, and cross-os testing, a testing service (or a small army of QA testers) is required.
 
 Although we've set up integration testing through a testing service, this has not been implemented in this project yet.
-
