@@ -8,8 +8,8 @@ class SamplesTest(PluginBase):
         self.login_navigate(f'samples/view/{sample_id}/1')
 
         # Make sure the default title appears
-        title = f'Sample View for "{sample_name}"'
-        self.assert_title(title)
+        title = f'KBase: Sample View for "{sample_name}"'
+        self.wait_for_title(title)
 
     def test_unauthenticated_sample_view(self):
         sample_id = '1e476e13-20be-4133-bf8a-6a5681423070'
@@ -17,7 +17,7 @@ class SamplesTest(PluginBase):
 
         self.navigate(plugin_path)
 
-        self.switch_to_iframe()
+        self.switch_to_kbase_ui_plugin_iframe()
 
         error_message_xpath = '//*[@class="ant-result-subtitle"]'
         error_message = 'Sample service error code 20000 Unauthorized: Anonymous users cannot read sample 1e476e13-20be-4133-bf8a-6a5681423070'

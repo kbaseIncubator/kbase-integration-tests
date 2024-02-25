@@ -31,13 +31,13 @@ This section describes how to get `poetry` up and running on macOS. These instru
 There is more than one way to get Python on your mac (one should probably not use the built-in python for development). This is one way to install Python from MacPorts:
 
 ```sh
-sudo port install python310
-sudo port select --set python python310
-sudo port select --set python3 python310
+sudo port install python312
+sudo port select --set python python312
+sudo port select --set python3 python312
 
-sudo port install py310-pip
-sudo port select --set pip pip310
-sudo port select --set pip3 pip310
+sudo port install py312-pip
+sudo port select --set pip pip312
+sudo port select --set pip3 pip312
 ```
 
 #### Poetry

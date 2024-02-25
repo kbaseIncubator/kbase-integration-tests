@@ -21,7 +21,7 @@ class DataviewSingleEndLibraryTest(DataviewBase):
                         ['Type', 'SingleEndLibrary'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/3/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/3/1']
                     ],
                     'panels': [
                         {
@@ -34,7 +34,7 @@ class DataviewSingleEndLibraryTest(DataviewBase):
                                     ['Type Version', '2.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/3/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/3/1']
                                 ]
                             }
                         },

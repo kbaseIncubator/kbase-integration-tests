@@ -1,18 +1,40 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
 
 from tests.kbase_ui.KBaseUIBase import KBaseUIBase
 
 
 class PluginBase(KBaseUIBase):
-    def auth_blocked_plugin(self, plugin_path):
+
+    def switch_to_kbase_ui_plugin_iframe(self):
+        iframe = self.wait.until(
+            expected_conditions.presence_of_element_located(
+                (By.XPATH, '//iframe')
+            )
+        )
+        self.browser.switch_to.frame(iframe)
+
+        iframe = self.wait.until(
+            expected_conditions.presence_of_element_located(
+                (By.XPATH, '//iframe')
+            )
+        )
+        self.browser.switch_to.frame(iframe)
+
+    def auth_blocked_plugin(self, plugin_path, plugin_name):
         self.navigate(plugin_path)
+        self.wait_for_title('KBase: KBase Sign In')
+        self.wait_for_header_title('KBase Sign In')
+        self.switch_to_kbase_ui_iframe()
+        self.wait_for_text_xpath('//h2', 'Welcome to KBase')
+        self.wait_for_text_xpath('//*[@role="heading"]', 'Sign In Required')
+        self.wait_for_text_xpath('//*[@role="region"]', f'Sign In is required to access {plugin_name}.')
 
-        self.switch_to_iframe()
 
-        # TODO: visually based rather than using hidden testing hooks
-        request_path = self.kbase_testhook(
-            [['plugin', 'auth2-client'], ['field', 'requested-path']])
-        self.wait_for_text_xpath(request_path, plugin_path)
+        # # TODO: visually based rather than using hidden testing hooks
+        # request_path = self.kbase_testhook(
+        #     [['plugin', 'auth2-client'], ['field', 'requested-path']])
+        # self.wait_for_text_xpath(request_path, plugin_path)
 
     def assert_table(self, start_from, table_data):
         for row_number, column_data in enumerate(table_data):
@@ -24,6 +46,9 @@ class PluginBase(KBaseUIBase):
 
     def assert_data_table(self, start_from, table_data):
         for row_number, column_data in enumerate(table_data):
+            # skip rows with None as the expected data.
+            if column_data is None:
+                continue
             for column_number, column_value in enumerate(column_data):
                 if column_value is None:
                     # skip null values for now.

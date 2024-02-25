@@ -32,7 +32,7 @@ class DataviewContigSetTest(DataviewBase):
                         ['Type', 'ContigSet'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/8/8']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/8/8']
                     ],
                     'panels': [
                         {
@@ -45,7 +45,7 @@ class DataviewContigSetTest(DataviewBase):
                                     ['Type Version', '2.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/8/8']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/8/8']
                                 ]
                             }
                         },

@@ -12,14 +12,12 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.os_manager import ChromeType
 from webdriver_manager.firefox import GeckoDriverManager
 
 from tests.kbase_ui.expected_conditions import (element_attribute_has_value,
                                                 element_attribute_is_value)
 
 DEFAULT_TIMEOUT = 10  # seconds
-
 
 class TestBase(unittest.TestCase):
     def __init__(self, *args):
@@ -99,7 +97,7 @@ class TestBase(unittest.TestCase):
             chrome_options.add_argument("--ignore-certificate-errors")
 
         self.browser = webdriver.Chrome(
-            service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=chrome_options
+            service=ChromiumService(ChromeDriverManager().install()), options=chrome_options
         )
         self.wait = WebDriverWait(self.browser, self.timeout)
 
@@ -139,7 +137,8 @@ class TestBase(unittest.TestCase):
 
         # self.wait_for_presence("label", "username")
 
-        self.wait_for_presence("image", "avatar")
+        # self.wait_for_presence("image", "avatar")
+        self.wait_for_presence_xpath('//*[@role="button" and @id="user-button"]')
 
     def logout(self):
         self.browser.delete_all_cookies()
@@ -243,10 +242,27 @@ class TestBase(unittest.TestCase):
         control = self.wait_for_visibility_xpath(xpath)
         control.send_keys(Keys.RETURN)
 
-    def wait_for_labeled_text(self, label, text, xpath=None):
+    def wait_for_labeled_text(self, label, text, xpath=None,):
         label = self.find_element_with_text(label, xpath='//*[@role="label"]')
         label_for = label.get_attribute("for")
         self.wait_for_text_xpath(f'//*[@id="{label_for}"]', text)
+
+    def wait_for_labeled_text2(self, label, text, xpath=None, within=None):
+        if within is None:
+            within = self.browser
+
+        # Find the label
+        label = within.find_element(By.XPATH, f'//*[@role="label" and text()="{label}"]')
+
+        # Find the element pointed to by the "for" attribute.
+        # label = self.find_element_with_text(label, xpath='//*[@role="label"]')
+        label_for = label.get_attribute("for")
+
+        element = label.find_element(By.XPATH, f'//*[@id="{label_for}" and text()="{text}"]')
+
+        return element
+
+        # self.wait_for_text_xpath(f'//*[@id="{label_for}"]', text)
 
     def assert_labeled_text(
         self, label, text, comparison="equal", xpath=None, start_from=None
@@ -300,6 +316,7 @@ class TestBase(unittest.TestCase):
         # TODO: as with other locations, we can apply different comparisons here
         # if we pass in a parameter to control it.
         self.assertEqual(cell.text, text)
+
 
     def find_element_containing_text(
         self, text, xpath=None, start_from=None, include_descendents=False
@@ -370,13 +387,27 @@ class TestBase(unittest.TestCase):
             text, xpath='//*[@role="heading"][@aria-level="1"]'
         )
 
-    def assert_title(self, title, include_descendent=False):
+    def assert_title_old(self, title, include_descendent=False):
         self.find_element_with_text(
             title,
-            xpath='//*[@role="heading"][@aria-level="1"]',
+            xpath='//*[@role="heading" and @aria-level="1"]',
             include_descendents=include_descendent,
         )
         self.wait_for_title(f"{title} | KBase")
+
+    def assert_title(self, title, include_descendent=False):
+        self.wait_for_text_xpath(
+            '//*[@role="heading" and @aria-level="1"]',
+            title
+#            include_descendents=include_descendent,
+        )
+        # self.wait_for_title(f"{title} | KBase")
+
+    def wait_for_header_title(self, title, include_descendent=False):
+        self.wait_for_text_xpath(
+            '//*[@role="heading" and @aria-level="1"]',
+            title
+        )
 
     def find_by_text(self, text, start_from=None, xpath="//"):
         if start_from is not None:

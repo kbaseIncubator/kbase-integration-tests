@@ -50,7 +50,7 @@ class DataviewGenomeSetTest(DataviewBase):
                         ['Type', 'GenomeSet'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/7/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/7/1']
                     ],
                     'panels': [
                         {
@@ -63,7 +63,7 @@ class DataviewGenomeSetTest(DataviewBase):
                                     ['Type Version', '2.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/7/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/7/1']
                                 ]
                             }
                         },

@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.12
 LABEL org.opencontainers.image.authors="KBase Developer"
 
 RUN apt update -y && apt install -y chromium

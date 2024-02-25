@@ -69,7 +69,7 @@ class DataviewMediaTest(DataviewBase):
                         ['Type', 'Media'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jan 6, 2020 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/2/8']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/2/8']
                     ],
                     'panels': [
                         {
@@ -82,7 +82,7 @@ class DataviewMediaTest(DataviewBase):
                                     ['Type Version', '1.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jan 6, 2020 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/2/8']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/2/8']
                                 ]
                             }
                         },

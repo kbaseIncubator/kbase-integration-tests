@@ -21,7 +21,7 @@ class DataviewFeatureSetTest(DataviewBase):
                         ['Type', 'FeatureSet'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/21/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/21/1']
                     ],
                     'panels': [
                         {
@@ -34,7 +34,7 @@ class DataviewFeatureSetTest(DataviewBase):
                                     ['Type Version', '4.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/21/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/21/1']
                                 ]
                             }
                         },

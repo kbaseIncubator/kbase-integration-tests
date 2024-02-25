@@ -68,7 +68,7 @@ class DataviewFBAModelTest(DataviewBase):
                         ['Type', 'FBAModel'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/19/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/19/1']
                     ],
                     'panels': [
                         {
@@ -81,7 +81,7 @@ class DataviewFBAModelTest(DataviewBase):
                                     ['Type Version', '14.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/19/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/19/1']
                                 ]
                             }
                         },

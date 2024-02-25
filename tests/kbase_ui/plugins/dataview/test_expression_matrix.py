@@ -35,7 +35,7 @@ class DataviewExpressionMatrixTest(DataviewBase):
                         ['Type', 'ExpressionMatrix'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/6/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/6/1']
                     ],
                     'panels': [
                         {
@@ -48,7 +48,7 @@ class DataviewExpressionMatrixTest(DataviewBase):
                                     ['Type Version', '1.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/6/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/6/1']
                                 ]
                             }
                         },

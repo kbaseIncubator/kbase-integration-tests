@@ -28,7 +28,7 @@ class DataviewReferenceAssemblyTest(DataviewBase):
                         ['Type', 'ReferenceAssembly'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/9/8']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/9/8']
                     ],
                     'panels': [
                         {
@@ -41,7 +41,7 @@ class DataviewReferenceAssemblyTest(DataviewBase):
                                     ['Type Version', '1.1'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/9/8']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/9/8']
                                 ]
                             }
                         },

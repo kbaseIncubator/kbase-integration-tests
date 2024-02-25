@@ -23,7 +23,7 @@ class DataviewTreeTest(DataviewBase):
                         ['Type', 'Tree'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/26/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/26/1']
                     ],
                     'panels': [
                         {
@@ -36,7 +36,7 @@ class DataviewTreeTest(DataviewBase):
                                     ['Type Version', '1.2'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/26/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/26/1']
                                 ]
                             }
                         },

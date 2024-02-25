@@ -153,15 +153,14 @@ class DataviewBase(PluginBase):
         self.click(panel_button)
 
     def dataview_navigate(self, object_case):
-
         if 'sub' in object_case:
             self.login_navigate(f'dataview/{object_case["ref"]}?sub={object_case["sub"]}&subid={object_case["subid"]}')
         else:
             self.login_navigate(f'dataview/{object_case["ref"]}')
             # Make sure the default title appears
-            self.assert_title(f'Data View for {object_case["name"]}')
+            self.wait_for_title(f'KBase: Data View for {object_case["name"]}')
 
-        self.switch_to_iframe()
+        self.switch_to_kbase_ui_plugin_iframe()
 
     def dataview_header(self, object_case):
         # The common header

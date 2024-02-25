@@ -6,13 +6,17 @@ Run integration tests against KBase user interfaces with Python. Tests currently
 
 Tests are run on your host machine, against an instance of a KBase user interface running locally or remotely.
 
-This project uses [poetry](./docs/using-poetry.md) to manage and install dependencies.
+This project uses [poetry](./docs/using-poetry.md) to manage and install dependencies,
+and to run the tool itself.
 
-In order to use this project you will need [poetry](https://python-poetry.org/docs/), which itself requires Python. Installation of poetry is not currently covered by this project.
+In order to use this project you will need [poetry](https://python-poetry.org/docs/),
+which itself requires Python. Installation of poetry [is documented](./docs/using-poetry.md), but it is limited so
+pretty much out of scope.
 
 From the repo root:
 
 ```shell
+poetry shell
 poetry install
 ```
 
@@ -29,9 +33,11 @@ where:
 
 Note that currently the test data is owned by the user `kbaseuitest` and is not public. This account has no additional authorization scopes, so the only token available for this account is a Login token. Please ask the UI team for a token for this account.
 
-This will run the tests against `https://ci.kbase.us`. If you are not running a local copy of kbase-ui with `ci.kbase.us` proxied to it, the tests will run against our `ci` runtime.
+This will run the tests against `https://ci.kbase.us`. If you are not running a local
+copy of kbase-ui with `ci.kbase.us` proxied to it, the tests will run against the actual `ci`
+runtime managed by the [KBase project](https://www.kbase.us).
 
-### Fine tuning
+### Fine Tuning Tests
 
 For repeated test runs, it is recommended to export environment variables one time.
 
@@ -46,9 +52,8 @@ then to run tests separately
  poetry run pytest ./tests
 ```
 
-To focus tests you may simply narrow the scope for discovery, even down to the individual file. E.g.
-
-this will run just the dataview plugin tests:
+To focus tests you may simply narrow the scope for discovery, even down to the
+individual file. E.g. this will run just the dataview plugin tests:
 
 ```shell
  poetry run pytest ./tests/plugins/dataview
@@ -63,7 +68,7 @@ or this will run just the feeds plugin tests:
 ### Optional environment variables
 
 - `GH_TOKEN` is a GitHub Personal Access Token (PAT); although optional, it is required if you run many tests and hit the rate limiting imposed by GitHub
-- `KBASE_ENV` is the KBase deployment environment, ci, next, appdev, narrative-dev or prod; defaults to ci
+- `KBASE_ENV` is the KBase deployment environment, `ci`, `next`, `appdev`, `narrative-dev` or `prod`; defaults to ci
 - `HEADLESS` if set to `t` will run the browser headless, set to `f` it will open the actual browser ui; defaults to `t`
 - `BROWSER` if set will determine the browser to run tests in, `firefox` and `chrome` are available; defaults to `chrome`
 - `TIMEOUT` if set indicates the test timeout in seconds; defaults to `30`.
