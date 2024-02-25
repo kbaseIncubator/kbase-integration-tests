@@ -8,7 +8,7 @@ class BiochemSearchTest(PluginBase):
         # Make sure the default title appears
         self.assert_title('Biochem Search')
 
-        self.switch_to_iframe()
+        self.switch_to_kbase_ui_plugin_iframe()
 
         # Make sure tabs are available
         self.wait_for_text('tab', 'Compounds', 'Compounds')
@@ -38,7 +38,7 @@ class BiochemSearchTest(PluginBase):
 
     def test_authenticated_search(self):
         self.login_navigate('biochem-search')
-        self.switch_to_iframe()
+        self.switch_to_kbase_ui_plugin_iframe()
 
         # search for "water"
         table_xpath = self.kbase_testhook([

@@ -106,7 +106,7 @@ class DataviewGenome3Test(DataviewBase):
                         ['Type', 'Genome'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/11/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/11/1']
                     ],
                     'panels': [
                         {
@@ -119,7 +119,7 @@ class DataviewGenome3Test(DataviewBase):
                                     ['Type Version', '17.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/11/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/11/1']
                                 ]
                             }
                         },

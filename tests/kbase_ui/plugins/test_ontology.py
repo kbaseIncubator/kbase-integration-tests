@@ -9,11 +9,11 @@ class OntologyTest(PluginBase):
         path = f'ontology/term/{namespace}/{term}'
         self.login_navigate(path)
 
-        title = f'Ontology Landing Page for "{name}" ({term})'
-        self.assert_title(title)
+        title = f'KBase: Ontology Landing Page for "{name}" ({term})'
+        self.wait_for_title(title)
 
     def test_unauthenticated_ontology_term(self):
         namespace = 'envo_ontology'
         term = 'ENVO:00001998'
         path = f'ontology/term/{namespace}/{term}'
-        self.auth_blocked_plugin(path)
+        self.auth_blocked_plugin(path, 'Ontology Viewer')

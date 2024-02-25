@@ -6,7 +6,7 @@ class JGISearchTest(PluginBase):
         self.login_navigate('jgi-search')
 
         # Make sure the default title appears
-        self.assert_title('JGI Search (BETA)')
+        self.wait_for_title('KBase: JGI Search (BETA)')
 
     def test_unauthenticated(self):
-        self.auth_blocked_plugin('jgi-search')
+        self.auth_blocked_plugin('jgi-search', 'JGI Search')

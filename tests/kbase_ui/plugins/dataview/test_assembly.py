@@ -55,7 +55,7 @@ class DataviewAssemblyTest(DataviewBase):
                         ['Type', 'Assembly'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/17/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/17/1']
                     ],
                     'panels': [
                         {
@@ -68,7 +68,7 @@ class DataviewAssemblyTest(DataviewBase):
                                     ['Type Version', '6.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 6, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/17/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/17/1']
                                 ]
                             }
                         },

@@ -43,3 +43,39 @@ class KBaseUIBase(TestBase):
     def wait_for_titles(self, title):
         self.wait_for_text("component", "title", title)
         self.wait_for_title(f"{title} | KBase")
+
+    def switch_to_kbase_ui_iframe(self):
+        iframe = self.wait.until(
+            expected_conditions.presence_of_element_located(
+                (By.XPATH, '//iframe')
+            )
+        )
+        self.browser.switch_to.frame(iframe)
+
+    def auth_blocked(self, plugin_path, name):
+        self.navigate(plugin_path)
+        self.navigate(plugin_path)
+        self.wait_for_title('KBase: KBase Sign In')
+        self.wait_for_header_title('KBase Sign In')
+        self.switch_to_kbase_ui_iframe()
+        self.wait_for_text_xpath('//h2', 'Welcome to KBase')
+        self.wait_for_text_xpath('//*[@role="heading"]', 'Sign In Required')
+        self.wait_for_text_xpath('//*[@role="region"]', f'Sign In is required to access {name}.')
+
+    def find_well(self, heading_text, start_from=None):
+        """
+        Finds and returns a Well with the given heading title
+        """
+        if start_from is None:
+            start_from = self.browser
+
+        xpath = f'//*[@role="article"]/*[@role="heading" and text()="{heading_text}"]'
+
+        heading = start_from.find_element(
+            By.XPATH, xpath
+        )
+        return heading.find_element(By.XPATH, './ancestor::*[@role="article"][1]')
+
+    def assert_table2(self, header=None, rows=None, row_count=None, start_from=None):
+        if start_from is None:
+            start_from = self.browser

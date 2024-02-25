@@ -6,7 +6,7 @@ class OrganizationsTest(PluginBase):
         self.login_navigate('orgs')
 
         # Make sure the default title appears
-        self.assert_title('Organizations')
+        self.wait_for_title('KBase: Organizations')
 
     def test_unauthenticated(self):
-        self.auth_blocked_plugin('orgs')
+        self.auth_blocked_plugin('orgs', 'KBase Organizations')

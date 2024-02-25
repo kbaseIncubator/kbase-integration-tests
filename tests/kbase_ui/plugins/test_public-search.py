@@ -6,10 +6,10 @@ class PublicSearchTest(PluginBase):
         self.login_navigate('public-search')
 
         # Make sure the default title appears
-        self.assert_title('KBase Data Search')
+        self.wait_for_title('KBase: KBase Data Search')
 
     def test_unauthenticated_search(self):
         self.navigate('public-search')
 
         # Make sure the default title appears
-        self.assert_title('KBase Data Search')
+        self.wait_for_title('KBase: KBase Data Search')

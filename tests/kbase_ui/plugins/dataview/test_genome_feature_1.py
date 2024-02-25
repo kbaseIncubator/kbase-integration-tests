@@ -1,6 +1,5 @@
 from tests.kbase_ui.plugins.dataview.DataviewBase import DataviewBase
 
-
 #
 # Other than the "data view" tab, this is the same as test_genome.py
 #
@@ -63,7 +62,7 @@ class DataviewGenomeTest(DataviewBase):
                         ['Type', 'Genome'],
                         ['In Narrative', '`dataview` Test Cases'],
                         ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                        ['Permalink', 'https://ci.kbase.us/#dataview/45593/5/1']
+                        ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/5/1']
                     ],
                     'panels': [
                         {
@@ -76,7 +75,7 @@ class DataviewGenomeTest(DataviewBase):
                                     ['Type Version', '7.0'],
                                     ['In Narrative', '`dataview` Test Cases'],
                                     ['Last Updated', 'Jun 3, 2022 by kbaseuitest'],
-                                    ['Permalink', 'https://ci.kbase.us/#dataview/45593/5/1']
+                                    ['Permalink', 'https://ci.kbase.us/legacy/dataview/45593/5/1']
                                 ]
                             }
                         },

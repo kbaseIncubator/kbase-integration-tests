@@ -6,10 +6,10 @@ class CatalogTest(PluginBase):
         self.login_navigate('catalog/apps')
 
         # Make sure the title appears
-        self.assert_title('App Catalog')
+        self.wait_for_title('KBase: App Catalog')
 
     def test_unauthenticated_catalog_apps(self):
         self.navigate('catalog/apps')
 
         # Make sure the title appears
-        self.assert_title('App Catalog')
+        self.wait_for_title('KBase: App Catalog')
