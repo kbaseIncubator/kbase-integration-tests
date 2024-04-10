@@ -47,14 +47,15 @@ Poetry recommends that it be installed as a standalone executable. This is becau
 Poetry provides a command line based installation script (which itself requires python...)
 
 ```bash
-curl -sSL https://install.python-poetry.org | python3 - --version 1.1.13
+curl -sSL https://install.python-poetry.org | python3 - --version 1.8.2
 ```
 
 > see [installation instructions](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
 
-> You may omit the `--version 1.1.3` to install the latest version
+> You may omit the `--version 1.8.2` to install the latest version; the version cited
+> here should match the Dockerfile at the project root.
 
-This will install poetry in `$HOME/Library/Python/3.7/bin/poetry`. The poetry binary will be added to your path in your zsh profile, and you may add it to the current terminal with the suggested command:
+This will install poetry in `$HOME/.lock/bin/poetry`. The poetry binary will be added to your path in your zsh profile, and you may add it to the current terminal with the suggested command:
 
 You can test it with
 
@@ -65,7 +66,7 @@ poetry --version
 which should return something like:
 
 ```shell
-Poetry version 1.1.13
+Poetry version 1.8.2
 ```
 
 ### Usage
