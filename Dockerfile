@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="KBase Developer"
 RUN apt update -y && apt install -y chromium
 
 # Install poetry; we can install via apt-get, but that does not give us control over the version
-RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.1.13
+RUN curl -sSL https://install.python-poetry.org | python3 - --version 1.8.2
 
 # Ensure standard path including local binaries (where poetry was installed)
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin
