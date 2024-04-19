@@ -6,14 +6,15 @@ Run integration tests against KBase user interfaces with Python. Tests currently
 
 Tests are run on your host machine, against an instance of a KBase user interface running locally or remotely.
 
-This project uses [poetry](./docs/using-poetry.md) to manage and install dependencies,
+This project is Python 12 based, and uses [poetry](./docs/using-poetry.md) to manage and install dependencies,
 and to run the tool itself.
 
 In order to use this project you will need [poetry](https://python-poetry.org/docs/),
-which itself requires Python. Installation of poetry [is documented](./docs/using-poetry.md), but it is limited so
-pretty much out of scope.
+which itself requires Python. Installation of poetry [is
+documented](./docs/using-poetry.md), but if things get sticky, you should
+consult the upstream [poetry docs](https://python-poetry.org/docs/)
 
-From the repo root:
+Once poetry is installed, from the repo root:
 
 ```shell
 poetry shell
