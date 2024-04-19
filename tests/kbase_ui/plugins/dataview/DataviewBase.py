@@ -298,7 +298,7 @@ class DataviewBase(PluginBase):
             else:
                 self.common_expectations(expectations, tab_pane)
         else:
-            raise ValueError(f'Missing data case in "Data View" tab')
+            raise ValueError('Missing data case in "Data View" tab')
 
     def auth_blocked_plugin(self, plugin_path):
         self.navigate(plugin_path)
