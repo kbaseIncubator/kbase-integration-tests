@@ -1,8 +1,8 @@
 # `pipenv`
 
-This project uses [`poetry`](https://python-poetry.org), a relatively new to KBase projects. Traditionally KBase Python projects have used virtual environments, `pip`, and a `requirements.txt` file listing the project dependencies.
+This project uses [`poetry`](https://python-poetry.org), a relative newcomer to KBase projects. Traditionally KBase Python projects have used virtual environments, `pip`, and a `requirements.txt` file listing the project dependencies.
 
-`poetry` does not work too differently, but has different installation instructions. Internally, `poetry` does create and use a virtual environment and uses `pip` for dependency management.
+Internally, `poetry` does create and use a virtual environment and uses `pip` for dependency management.
 
 `poetry` stores dependency information in a pair of configuration files.
 
@@ -18,7 +18,14 @@ The lock file is one of the keys to success with poetry (or Pipenv for that matt
 
 Note that when using a docker workflow, it is not really "necessary" to use poetry directly, unless one is updating dependencies.
 
-However, since most developers will surely be using an editor or IDE which supports intellisense, api lookup, identification of unavailable imports, etc. it is important to set up poetry for local development.
+However, since most developers will surely be using an editor or IDE which
+supports intellisense, api lookup, identification of unavailable imports, etc.
+it is important to set up poetry for local development.
+
+Also, although we would love to be able to run integration tests from a
+container, it is often easier to run them from your host. This is especially
+true for running tests against a local instance, as any local proxying won't
+affect a container.
 
 ## Using `poetry` on macOs
 
@@ -28,7 +35,7 @@ This section describes how to get `poetry` up and running on macOS. These instru
 
 #### Python
 
-There is more than one way to get Python on your mac (one should probably not use the built-in python for development). This is one way to install Python from MacPorts:
+There is more than one way to get Python on your mac (one should probably not use the built-in python for development). This is one way to install Python from [MacPorts](https://www.macports.org/):
 
 ```sh
 sudo port install python312
